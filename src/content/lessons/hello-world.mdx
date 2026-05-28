@@ -1,0 +1,38 @@
+---
+title: Hello World
+description: A tour of every interactive element available in Learning Vault lessons.
+tags: [demo, shader, graph]
+published: true
+---
+
+import FadeIn from '@/components/motion/FadeIn'
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import R3FCanvas from '@/components/canvas/R3FCanvas'
+
+Welcome to **Learning Vault**. This starter lesson demonstrates every interactive component available to lesson authors.
+
+## Animated entrance
+
+<FadeIn delay={0.1}>
+  This paragraph fades in with a slight upward drift courtesy of Framer Motion.
+</FadeIn>
+
+## Node graph (React Flow)
+
+export const nodes = [
+  { id: '1', position: { x: 0, y: 0 }, data: { label: 'Vertex Shader' } },
+  { id: '2', position: { x: 200, y: 0 }, data: { label: 'Fragment Shader' } },
+  { id: '3', position: { x: 100, y: 120 }, data: { label: 'Output' } },
+]
+export const edges = [
+  { id: 'e1-3', source: '1', target: '3' },
+  { id: 'e2-3', source: '2', target: '3' },
+]
+
+<FlowCanvas nodes={nodes} edges={edges} />
+
+## 3D canvas (React Three Fiber)
+
+Rotate the cube by dragging. The default scene renders an indigo box with orbit controls.
+
+<R3FCanvas />
