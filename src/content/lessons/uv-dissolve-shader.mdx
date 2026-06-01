@@ -7,8 +7,14 @@ published: true
 
 import FlowCanvas from '@/components/flow/FlowCanvas'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
+import FadeIn from '@/components/motion/FadeIn'
 
 A dissolve shader decides which parts of a surface stay visible and which parts disappear.
+
+<FadeIn delay={0.1}>
+  Think of the shader as a simple filter: sample a pattern, choose a cutoff, hide
+  anything below it, then color the border so the dissolve is easy to read.
+</FadeIn>
 
 The useful mental model is:
 
@@ -95,6 +101,13 @@ export const dissolveEdges = [
 - Using noise without UV control, which makes the pattern hard to direct.
 - Making the edge band too wide, which turns the dissolve into a blob of glow.
 - Forgetting that this web lesson is conceptual; it is not an actual Unity Shader Graph or ASE asset.
+
+## ASE Equivalent
+
+In Amplify Shader Editor, this would be built from equivalent nodes for UV
+coordinates, noise sampling, comparison or step logic, alpha clipping, and an
+emissive edge band. This page teaches the connection logic only; it does not
+generate a real ASE graph file.
 
 ## Practice
 

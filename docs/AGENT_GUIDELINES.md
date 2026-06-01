@@ -175,3 +175,8 @@ Before finishing, check:
 - Are visuals actually useful?
 - Did the task stay in scope?
 - Are file names clear?
+
+Trigger an independent code review when a change touches shared app structure,
+shared components, build/deploy config, MDX registration, or several files at
+once. For small single-lesson edits, lint, typecheck, build, and this checklist
+are enough by default.
