@@ -1,0 +1,82 @@
+---
+title: Masked Color Ramp
+description: How a single grayscale mask becomes stylized color by mapping values through a gradient ramp.
+tags: [shader, vfx, color, ramp]
+published: true
+---
+
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import MaskedColorRampDemo from '@/components/shader/MaskedColorRampDemo'
+import FadeIn from '@/components/motion/FadeIn'
+
+A color ramp turns a boring grayscale mask into a stylized, readable surface by deciding which color each value should become.
+
+<FadeIn delay={0.1}>
+  Read the visual in four passes: grayscale mask, banded zones, ramp lookup, and final result.
+  The stop sliders drive every panel at the same time.
+</FadeIn>
+
+This connects directly to the dissolve lesson: there the grayscale mask decided what
+*disappears*. Here the same kind of mask decides what *color* shows up.
+
+The useful mental model is:
+
+```text
+Grayscale Mask -> Ramp Stops -> Color Lookup -> Final Color
+```
+
+## Visual Hook
+
+<MaskedColorRampDemo />
+
+The important idea is that color is not painted per pixel by hand. A single grayscale
+value picks a spot on the ramp, and the ramp returns the final color:
+
+- read one grayscale value
+- find where it sits between the stops
+- blend the two surrounding colors
+- output that color
+
+## Concept Map
+
+<FlowCanvas steps="Grayscale Mask|Stop A|Stop B|Color Lookup|Final Color" />
+
+## What Each Step Does
+
+**Grayscale mask** is the input. Each pixel has a single value from dark to bright.
+
+**Stop positions** decide where the low, mid, and high colors take over. Move a stop and the same mask reads completely differently.
+
+**Banded zones** show the hard version: which of the three colors a value would snap to without blending.
+
+**Color lookup** is the smooth version: values between two stops blend between the two colors.
+
+**Final color** is just the lookup applied to the whole surface. No extra work.
+
+## Three Useful Presets
+
+- **Lava:** dark rock at the bottom, glowing orange edge, hot bright core.
+- **Toxic:** deep green base ramping into an acid-green highlight.
+- **Ice:** cold shadow tones lifting into bright frozen highlights.
+
+## Common Mistakes
+
+- Pushing both stops close together, which removes the blend and posterizes the result.
+- Forgetting that the mask never changed; only the mapping did.
+- Thinking this web lesson exports a real ramp texture; it is conceptual only.
+
+## ASE Equivalent
+
+In Amplify Shader Editor, this is a grayscale value feeding a gradient or ramp node
+(often a ramp texture sampled by the mask). This page teaches the mapping logic only;
+it does not generate a real ASE graph or ramp texture asset.
+
+## Practice
+
+Set the demo to **Lava**. Move only the **high stop** slider toward the left and watch the four panels. Then write one sentence:
+
+```text
+The grayscale mask stays the same, but the bright color now covers ____.
+```
+
+After that, drag the mid and high stops close together and describe what happens to the blend.

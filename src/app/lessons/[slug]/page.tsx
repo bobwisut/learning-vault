@@ -10,6 +10,7 @@ import { ReadingPathDiagram } from '@/components/lesson/VisualLessonMap'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
 import FlowMapDemo from '@/components/shader/FlowMapDemo'
 import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
+import MaskedColorRampDemo from '@/components/shader/MaskedColorRampDemo'
 
 const components = {
   FadeIn,
@@ -20,6 +21,7 @@ const components = {
   DissolveShaderDemo,
   FlowMapDemo,
   FresnelRimDemo,
+  MaskedColorRampDemo,
 }
 
 export async function generateStaticParams() {
