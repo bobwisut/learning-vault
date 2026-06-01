@@ -1,0 +1,109 @@
+---
+title: Fresnel Rim Light
+description: See why edges glow based on view angle and how rim power controls the falloff.
+tags: [shader, vfx, fresnel, rim-light]
+published: true
+---
+
+import FadeIn from '@/components/motion/FadeIn'
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
+
+Fresnel rim light makes the edge of a surface glow when it turns away from the camera.
+
+<FadeIn delay={0.1}>
+  A simple way to think about it: surfaces facing you stay calm, surfaces viewed
+  from the side get brighter.
+</FadeIn>
+
+The useful mental model is:
+
+```text
+View Direction + Normal -> Fresnel -> Emission
+```
+
+The common shader shape is:
+
+```text
+pow(1 - dot(normal, viewDir), rimPower)
+```
+
+This lesson uses a camera-facing sphere preview, so the view comparison is
+represented by how close each point is to the silhouette edge.
+
+## Visual Hook
+
+<FresnelRimDemo />
+
+## Concept Map
+
+export const fresnelNodes = [
+  {
+    id: 'view',
+    position: { x: 0, y: 0 },
+    data: { label: 'View Direction' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
+  },
+  {
+    id: 'normal',
+    position: { x: 0, y: 140 },
+    data: { label: 'Surface Normal' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #34d399' },
+  },
+  {
+    id: 'fresnel',
+    position: { x: 0, y: 260 },
+    data: { label: 'Fresnel' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #c084fc' },
+  },
+  {
+    id: 'power',
+    position: { x: 0, y: 400 },
+    data: { label: 'Rim Power' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
+  },
+  {
+    id: 'emission',
+    position: { x: 0, y: 540 },
+    data: { label: 'Emission' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #fb7185' },
+  },
+]
+
+export const fresnelEdges = [
+  { id: 'view-fresnel', source: 'view', target: 'fresnel', animated: true },
+  { id: 'normal-fresnel', source: 'normal', target: 'fresnel', animated: true },
+  { id: 'fresnel-power', source: 'fresnel', target: 'power', animated: true },
+  { id: 'power-emission', source: 'power', target: 'emission' },
+]
+
+<FlowCanvas nodes={fresnelNodes} edges={fresnelEdges} />
+
+## What Each Step Does
+
+**View direction** is the direction from the surface toward the camera.
+
+**Surface normal** is the direction the surface is facing.
+
+**Fresnel** compares those two directions. The result is low when the surface
+faces the camera and high near the silhouette edge.
+
+**Rim power** controls how wide or sharp the glow band feels.
+
+**Emission** adds the rim color back into the final effect.
+
+## Three Useful Looks
+
+- **Soft shield:** broad rim for protective bubbles, shields, and selection outlines.
+- **Sharp aura:** tight stylized glow around a character or object.
+- **Warm dissolve edge:** a rim-like glow that can connect to burn and dissolve effects.
+
+## Common Mistakes
+
+- Setting rim power too high, which makes the glow disappear into a thin line.
+- Using too much emission, which can flatten the object into a neon sticker.
+- Treating this as a real engine shader; this is a conceptual web lesson, not a Unity or ASE asset.
+
+## Practice
+
+Start with **Soft shield**, then raise rim power until the rim becomes thin. Switch to a warm color and describe whether it feels more like protection, heat, or dissolve energy.

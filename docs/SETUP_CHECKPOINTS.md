@@ -47,3 +47,12 @@ Status: complete
 - Include side-by-side static vs panning previews.
 - Include speed and direction controls.
 - Include the UV -> Offset Time -> Texture Sample -> Final Color diagram.
+
+## Checkpoint 6: Fresnel Rim Lesson
+
+Status: complete
+
+- Publish `fresnel-rim-light` as the next shader/VFX lesson.
+- Include an adjustable rim preview.
+- Include rim power, emission intensity, and color controls.
+- Include the View Direction + Normal -> Fresnel -> Emission diagram.

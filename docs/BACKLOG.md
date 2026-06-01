@@ -16,12 +16,13 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ### Shader/VFX: Fresnel Rim Light
 
-- Status: ready
+- Status: done
 - Goal: show why edges glow based on view angle.
 - Main visual: sphere or card with adjustable rim intensity.
 - Interaction: rim power and color controls.
 - Diagram: View Direction + Normal -> Fresnel -> Emission.
 - Notes: useful bridge to stylized shield, aura, and dissolve effects.
+- Lesson: `fresnel-rim-light`
 
 ### Learning System: How To Read A Visual Lesson
 
