@@ -2,16 +2,18 @@
 
 ## Checkpoint 1: App Foundation
 
-Status: in progress
+Status: complete
 
 - Keep Learning Vault as the existing Next.js visual learning app.
 - Keep MDX lessons in `src/content/lessons`.
 - Keep reusable visual components in `src/components`.
 - Keep project direction and agent rules in `docs/`.
+- Add a homepage that shows the current foundation and lesson pipeline.
+- Add a lesson workflow template for future lesson work.
 
 ## Checkpoint 2: Online Deployment
 
-Status: in progress
+Status: complete
 
 - Deploy the static app through GitHub Pages.
 - Use GitHub Actions to rebuild on pushes to `main`.
@@ -33,4 +35,3 @@ Status: later
 - Add a repeatable lesson request template.
 - Add review criteria for visual lessons.
 - Add a lightweight backlog for future shader, VFX, and tarot modules.
-
