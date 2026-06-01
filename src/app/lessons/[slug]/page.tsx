@@ -6,8 +6,9 @@ import FadeIn from '@/components/motion/FadeIn'
 import FlowCanvas from '@/components/flow/FlowCanvas'
 import R3FCanvas from '@/components/canvas/R3FCanvas'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
+import FlowMapDemo from '@/components/shader/FlowMapDemo'
 
-const components = { FadeIn, FlowCanvas, R3FCanvas, DissolveShaderDemo }
+const components = { FadeIn, FlowCanvas, R3FCanvas, DissolveShaderDemo, FlowMapDemo }
 
 export async function generateStaticParams() {
   return getAllLessons().map((lesson) => ({ slug: lesson.slug }))

@@ -37,3 +37,13 @@ Status: complete
 - Add review criteria for visual lessons.
 - Add a lightweight backlog for future shader, VFX, and tarot modules.
 - Link the workflow docs from agent guidance and lesson workflow.
+
+## Checkpoint 5: Backlog Lesson Loop
+
+Status: complete
+
+- Use the content workflow to select a ready backlog item.
+- Publish `uv-panning-flow-maps` as the next shader/VFX lesson.
+- Include side-by-side static vs panning previews.
+- Include speed and direction controls.
+- Include the UV -> Offset Time -> Texture Sample -> Final Color diagram.

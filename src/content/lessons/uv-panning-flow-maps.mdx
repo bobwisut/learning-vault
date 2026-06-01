@@ -1,0 +1,103 @@
+---
+title: UV Panning And Flow Maps
+description: Learn how moving UV coordinates creates scrolling water, energy, smoke, and other VFX motion.
+tags: [shader, vfx, uv, flow-map]
+published: true
+---
+
+import FadeIn from '@/components/motion/FadeIn'
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import FlowMapDemo from '@/components/shader/FlowMapDemo'
+
+UV panning is one of the simplest ways to make a texture feel alive. A flow map
+adds the next idea: local bends that make the motion curve instead of sliding in
+one perfectly straight direction.
+
+<FadeIn delay={0.1}>
+  Instead of moving the mesh, the shader moves where it samples the texture.
+  The surface stays still, but the pattern slides across it.
+</FadeIn>
+
+The useful mental model is:
+
+```text
+UV -> Offset Time -> Optional Flow Bend -> Texture Sample -> Final Color
+```
+
+## Visual Hook
+
+<FlowMapDemo />
+
+## Concept Map
+
+export const flowNodes = [
+  {
+    id: 'uv',
+    position: { x: 0, y: 80 },
+    data: { label: 'UV' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
+  },
+  {
+    id: 'time',
+    position: { x: 180, y: 80 },
+    data: { label: 'Offset Time' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
+  },
+  {
+    id: 'sample',
+    position: { x: 0, y: 300 },
+    data: { label: 'Texture Sample' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #2dd4bf' },
+  },
+  {
+    id: 'final',
+    position: { x: 0, y: 450 },
+    data: { label: 'Final Color' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #c084fc' },
+  },
+  {
+    id: 'flow',
+    position: { x: 0, y: 200 },
+    data: { label: 'Optional Flow Bend' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #a78bfa' },
+  },
+]
+
+export const flowEdges = [
+  { id: 'uv-time', source: 'uv', target: 'time', animated: true },
+  { id: 'time-flow', source: 'time', target: 'flow', animated: true },
+  { id: 'flow-sample', source: 'flow', target: 'sample', animated: true },
+  { id: 'sample-final', source: 'sample', target: 'final' },
+]
+
+<FlowCanvas nodes={flowNodes} edges={flowEdges} />
+
+## What Each Step Does
+
+**UV** is the original texture coordinate on the surface.
+
+**Offset time** adds a changing value to the UV. That changing value creates motion.
+
+**Optional flow bend** nudges the moving UVs locally. A real flow map stores
+those local directions in a texture; this lesson uses a web distortion to show
+the idea conceptually.
+
+**Texture sample** reads the texture at the shifted coordinate.
+
+**Final color** shows the sampled result on the surface.
+
+## Three Useful Looks
+
+- **Water drift:** slow sideways motion for water, mist, or heat haze.
+- **Energy stream:** fast vertical movement for shield or magic effects.
+- **Smoke crawl:** slow diagonal movement for smoke, dust, or clouds.
+
+## Common Mistakes
+
+- Panning too fast, which makes the surface look like a screen instead of material.
+- Moving only one layer, which can feel flat; later lessons can stack two panners.
+- Forgetting that this is conceptual web teaching, not a Unity material or ASE graph file.
+
+## Practice
+
+Set the demo to **Water drift**, lower the speed, then switch direction. Describe which direction feels most like a river and which feels most like rising steam.

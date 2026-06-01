@@ -6,12 +6,13 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ### Shader/VFX: UV Panning And Flow Maps
 
-- Status: ready
+- Status: done
 - Goal: explain how scrolling UVs make water, energy, and smoke feel like they move.
 - Main visual: side-by-side static texture and panning texture preview.
 - Interaction: speed and direction controls.
 - Diagram: UV -> Offset Time -> Texture Sample -> Final Color.
 - Notes: keep it conceptual; do not create Unity assets.
+- Lesson: `uv-panning-flow-maps`
 
 ### Shader/VFX: Fresnel Rim Light
 
@@ -65,4 +66,3 @@ This backlog keeps future lesson work small enough for agents to execute.
 - Tarot suit maps.
 - Lesson search and tags.
 - Public/private content split.
-
