@@ -30,47 +30,7 @@ UV -> Offset Time -> Optional Flow Bend -> Texture Sample -> Final Color
 
 ## Concept Map
 
-export const flowNodes = [
-  {
-    id: 'uv',
-    position: { x: 0, y: 80 },
-    data: { label: 'UV' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
-  },
-  {
-    id: 'time',
-    position: { x: 180, y: 80 },
-    data: { label: 'Offset Time' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
-  },
-  {
-    id: 'sample',
-    position: { x: 0, y: 300 },
-    data: { label: 'Texture Sample' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #2dd4bf' },
-  },
-  {
-    id: 'final',
-    position: { x: 0, y: 450 },
-    data: { label: 'Final Color' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #c084fc' },
-  },
-  {
-    id: 'flow',
-    position: { x: 0, y: 200 },
-    data: { label: 'Optional Flow Bend' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #a78bfa' },
-  },
-]
-
-export const flowEdges = [
-  { id: 'uv-time', source: 'uv', target: 'time', animated: true },
-  { id: 'time-flow', source: 'time', target: 'flow', animated: true },
-  { id: 'flow-sample', source: 'flow', target: 'sample', animated: true },
-  { id: 'sample-final', source: 'sample', target: 'final' },
-]
-
-<FlowCanvas nodes={flowNodes} edges={flowEdges} />
+<FlowCanvas steps="UV|Offset Time|Optional Flow Bend|Texture Sample|Final Color" />
 
 ## What Each Step Does
 

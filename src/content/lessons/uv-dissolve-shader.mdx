@@ -28,55 +28,7 @@ UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
 
 ## Concept Map
 
-export const dissolveNodes = [
-  {
-    id: 'uv',
-    position: { x: 0, y: 70 },
-    data: { label: 'UV' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
-  },
-  {
-    id: 'noise',
-    position: { x: 160, y: 70 },
-    data: { label: 'Noise' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #a3e635' },
-  },
-  {
-    id: 'threshold',
-    position: { x: 320, y: 70 },
-    data: { label: 'Threshold' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
-  },
-  {
-    id: 'alpha',
-    position: { x: 500, y: 30 },
-    data: { label: 'Alpha Cutoff' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #fb7185' },
-  },
-  {
-    id: 'edge',
-    position: { x: 500, y: 130 },
-    data: { label: 'Edge Glow' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #2dd4bf' },
-  },
-  {
-    id: 'final',
-    position: { x: 700, y: 80 },
-    data: { label: 'Final Color' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #c084fc' },
-  },
-]
-
-export const dissolveEdges = [
-  { id: 'uv-noise', source: 'uv', target: 'noise', animated: true },
-  { id: 'noise-threshold', source: 'noise', target: 'threshold', animated: true },
-  { id: 'threshold-alpha', source: 'threshold', target: 'alpha', animated: true },
-  { id: 'threshold-edge', source: 'threshold', target: 'edge', animated: true },
-  { id: 'alpha-final', source: 'alpha', target: 'final' },
-  { id: 'edge-final', source: 'edge', target: 'final' },
-]
-
-<FlowCanvas nodes={dissolveNodes} edges={dissolveEdges} />
+<FlowCanvas steps="UV|Noise|Threshold|Alpha Cutoff + Edge Glow|Final Color" />
 
 ## What Each Step Does
 

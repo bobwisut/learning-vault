@@ -37,47 +37,7 @@ represented by how close each point is to the silhouette edge.
 
 ## Concept Map
 
-export const fresnelNodes = [
-  {
-    id: 'view',
-    position: { x: 0, y: 0 },
-    data: { label: 'View Direction' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
-  },
-  {
-    id: 'normal',
-    position: { x: 0, y: 140 },
-    data: { label: 'Surface Normal' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #34d399' },
-  },
-  {
-    id: 'fresnel',
-    position: { x: 0, y: 260 },
-    data: { label: 'Fresnel' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #c084fc' },
-  },
-  {
-    id: 'power',
-    position: { x: 0, y: 400 },
-    data: { label: 'Rim Power' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
-  },
-  {
-    id: 'emission',
-    position: { x: 0, y: 540 },
-    data: { label: 'Emission' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #fb7185' },
-  },
-]
-
-export const fresnelEdges = [
-  { id: 'view-fresnel', source: 'view', target: 'fresnel', animated: true },
-  { id: 'normal-fresnel', source: 'normal', target: 'fresnel', animated: true },
-  { id: 'fresnel-power', source: 'fresnel', target: 'power', animated: true },
-  { id: 'power-emission', source: 'power', target: 'emission' },
-]
-
-<FlowCanvas nodes={fresnelNodes} edges={fresnelEdges} />
+<FlowCanvas steps="View Direction + Surface Normal|Fresnel|Rim Power|Emission" />
 
 ## What Each Step Does
 

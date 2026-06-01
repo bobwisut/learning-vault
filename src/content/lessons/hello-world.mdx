@@ -19,17 +19,7 @@ Welcome to **Learning Vault**. This starter lesson demonstrates every interactiv
 
 ## Node graph (React Flow)
 
-export const nodes = [
-  { id: '1', position: { x: 0, y: 0 }, data: { label: 'Vertex Shader' } },
-  { id: '2', position: { x: 200, y: 0 }, data: { label: 'Fragment Shader' } },
-  { id: '3', position: { x: 100, y: 120 }, data: { label: 'Output' } },
-]
-export const edges = [
-  { id: 'e1-3', source: '1', target: '3' },
-  { id: 'e2-3', source: '2', target: '3' },
-]
-
-<FlowCanvas nodes={nodes} edges={edges} />
+<FlowCanvas steps="Vertex Shader|Fragment Shader|Output" />
 
 ## 3D canvas (React Three Fiber)
 

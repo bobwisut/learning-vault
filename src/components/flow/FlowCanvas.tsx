@@ -1,6 +1,7 @@
 interface FlowCanvasProps {
-  nodes: unknown
-  edges: unknown
+  nodes?: unknown
+  edges?: unknown
+  steps?: string
   className?: string
 }
 
@@ -30,9 +31,24 @@ function isConceptEdge(value: unknown): value is ConceptEdge {
   return Boolean(value && typeof value === 'object' && 'source' in value && 'target' in value)
 }
 
-export default function FlowCanvas({ nodes, edges, className }: FlowCanvasProps) {
-  const normalizedNodes = asArray<ConceptNode>(nodes).filter(isConceptNode)
-  const normalizedEdges = asArray<ConceptEdge>(edges).filter(isConceptEdge)
+export default function FlowCanvas({ nodes, edges, steps, className }: FlowCanvasProps) {
+  const stepNodes = steps
+    ?.split('|')
+    .map((step) => step.trim())
+    .filter(Boolean)
+    .map((label, index) => ({
+      id: `step-${index + 1}`,
+      position: { x: index * 100, y: 0 },
+      data: { label },
+    }))
+
+  const normalizedNodes = stepNodes ?? asArray<ConceptNode>(nodes).filter(isConceptNode)
+  const normalizedEdges =
+    stepNodes?.slice(0, -1).map((node, index) => ({
+      id: `${node.id}-${stepNodes[index + 1].id}`,
+      source: node.id,
+      target: stepNodes[index + 1].id,
+    })) ?? asArray<ConceptEdge>(edges).filter(isConceptEdge)
   const orderedNodes = [...normalizedNodes].sort((a, b) => {
     const yDiff = (a.position?.y ?? 0) - (b.position?.y ?? 0)
     if (Math.abs(yDiff) > 40) return yDiff
