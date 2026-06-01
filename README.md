@@ -51,6 +51,14 @@ npx tsc --noEmit
 
 There is no test suite yet.
 
+## Deployment
+
+The app is configured for static export and GitHub Pages.
+
+Pushes to `main` run `.github/workflows/deploy.yml`, build the app with
+`npm run build`, upload the generated `out` directory, and deploy it to the
+default GitHub Pages domain.
+
 ## Lesson Authoring
 
 Lessons are MDX files in `src/content/lessons`. Published lessons need
