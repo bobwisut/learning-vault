@@ -2,6 +2,9 @@
 
 import { useMemo, useState } from 'react'
 
+const GRID_COLUMNS = 12
+const GRID_ROWS = 8
+
 const presets = [
   {
     name: 'Soft edge',
@@ -27,8 +30,8 @@ const presets = [
 ]
 
 function noiseAt(index: number) {
-  const x = index % 18
-  const y = Math.floor(index / 18)
+  const x = index % GRID_COLUMNS
+  const y = Math.floor(index / GRID_COLUMNS)
   const wave = Math.sin(x * 1.7 + y * 0.9) + Math.cos(x * 0.8 - y * 1.3)
   const grain = Math.sin((x + 3) * (y + 5) * 0.37)
   return Math.max(0, Math.min(1, 0.5 + wave * 0.18 + grain * 0.16))
@@ -52,7 +55,7 @@ function CellGrid({
   mode: 'noise' | 'mask' | 'edge' | 'final'
 }) {
   return (
-    <div className="grid aspect-[3/2] grid-cols-[repeat(18,minmax(0,1fr))] gap-1">
+    <div className="grid aspect-[3/2] grid-cols-[repeat(12,minmax(0,1fr))] gap-1.5">
       {cells.map((value, index) => {
         const visible = value >= threshold
         const edge = Math.abs(value - threshold) <= edgeWidth
@@ -127,7 +130,7 @@ export default function DissolveShaderDemo() {
   const [threshold, setThreshold] = useState(presets[0].threshold)
   const [edgeWidth, setEdgeWidth] = useState(presets[0].edgeWidth)
   const active = presets[activePreset]
-  const cells = useMemo(() => Array.from({ length: 18 * 12 }, (_, index) => noiseAt(index)), [])
+  const cells = useMemo(() => Array.from({ length: GRID_COLUMNS * GRID_ROWS }, (_, index) => noiseAt(index)), [])
 
   function applyPreset(index: number) {
     setActivePreset(index)
@@ -136,8 +139,8 @@ export default function DissolveShaderDemo() {
   }
 
   return (
-    <section className="my-8 not-prose rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5">
-      <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+    <section className="my-8 not-prose rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[1fr_320px]">
         <div>
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
@@ -151,14 +154,14 @@ export default function DissolveShaderDemo() {
             </span>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          <div className="grid gap-4 lg:grid-cols-2">
             {breakdownPanels.map((panel) => (
-              <div key={panel.title} className="rounded-lg border border-zinc-800 bg-zinc-900/70 p-3">
+              <div key={panel.title} className="rounded-lg border border-zinc-800 bg-zinc-900/70 p-4">
                 <div className="mb-3">
-                  <h4 className="text-sm font-semibold text-white">{panel.title}</h4>
+                  <h4 className="text-base font-semibold text-white">{panel.title}</h4>
                   <p className="mt-1 text-xs leading-5 text-zinc-400">{panel.description}</p>
                 </div>
-                <div className="overflow-hidden rounded-md border border-zinc-800 bg-[radial-gradient(circle_at_30%_20%,#334155,transparent_32%),linear-gradient(135deg,#18181b,#020617)] p-2">
+                <div className="overflow-hidden rounded-md border border-zinc-800 bg-[radial-gradient(circle_at_30%_20%,#334155,transparent_32%),linear-gradient(135deg,#18181b,#020617)] p-3">
                   <CellGrid
                     cells={cells}
                     threshold={threshold}
