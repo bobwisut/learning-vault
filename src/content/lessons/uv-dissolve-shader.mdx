@@ -9,11 +9,11 @@ import FlowCanvas from '@/components/flow/FlowCanvas'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
 import FadeIn from '@/components/motion/FadeIn'
 
-A dissolve shader decides which parts of a surface stay visible and which parts disappear.
+A dissolve shader uses a grayscale pattern to decide which parts of a surface stay visible and which parts disappear.
 
 <FadeIn delay={0.1}>
-  Think of the shader as a simple filter: sample a pattern, choose a cutoff, hide
-  anything below it, then color the border so the dissolve is easy to read.
+  Read the visual in four passes: raw noise, threshold mask, edge band, and final result.
+  The sliders drive every panel at the same time.
 </FadeIn>
 
 The useful mental model is:
@@ -26,6 +26,14 @@ UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
 
 <DissolveShaderDemo />
 
+The important idea is that the final dissolve is not one mysterious operation.
+It is several small decisions stacked together:
+
+- sample a noise value
+- compare it to a cutoff
+- hide one side of the comparison
+- color the values close to the cutoff
+
 ## Concept Map
 
 <FlowCanvas steps="UV|Noise|Threshold|Alpha Cutoff + Edge Glow|Final Color" />
@@ -34,9 +42,9 @@ UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
 
 **UV** is the surface coordinate. It tells the shader where on the mesh it is sampling.
 
-**Noise** turns those coordinates into an uneven grayscale pattern.
+**Noise** gives each point on the surface a grayscale value.
 
-**Threshold** compares the noise value to a cutoff value. Lower cutoff means more of the surface survives. Higher cutoff means more disappears.
+**Threshold** compares each noise value to the cutoff slider. Lower cutoff means more of the surface survives. Higher cutoff means more disappears.
 
 **Alpha cutoff** hides pixels below the threshold.
 
@@ -63,4 +71,10 @@ generate a real ASE graph file.
 
 ## Practice
 
-Change the alpha cutoff in the demo until only small islands remain. Then widen the edge band and describe how the feeling changes.
+Set the demo to **Soft edge**. Move only the alpha cutoff slider and watch the four panels. Then write one sentence:
+
+```text
+The raw noise stays the same, but the threshold mask changes by ____.
+```
+
+After that, move only the edge width slider and describe what changes in the edge band.

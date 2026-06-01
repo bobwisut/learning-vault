@@ -38,6 +38,90 @@ function formatPercent(value: number) {
   return `${Math.round(value * 100)}%`
 }
 
+function CellGrid({
+  cells,
+  threshold,
+  edgeWidth,
+  tint,
+  mode,
+}: {
+  cells: number[]
+  threshold: number
+  edgeWidth: number
+  tint: string
+  mode: 'noise' | 'mask' | 'edge' | 'final'
+}) {
+  return (
+    <div className="grid aspect-[3/2] grid-cols-[repeat(18,minmax(0,1fr))] gap-1">
+      {cells.map((value, index) => {
+        const visible = value >= threshold
+        const edge = Math.abs(value - threshold) <= edgeWidth
+        const noiseLevel = Math.round(35 + value * 55)
+
+        let className = 'rounded-sm border transition-all duration-200'
+        let opacity = 1
+        let style: { opacity?: number; backgroundColor?: string } = {}
+
+        if (mode === 'noise') {
+          className += ' border-zinc-800'
+          style = { backgroundColor: `rgb(${noiseLevel} ${noiseLevel} ${noiseLevel})` }
+        }
+
+        if (mode === 'mask') {
+          className += visible ? ' border-white/40 bg-white' : ' border-zinc-900 bg-zinc-950'
+          opacity = visible ? 0.92 : 0.9
+        }
+
+        if (mode === 'edge') {
+          className += edge ? `${tint} border-white/70 shadow-[0_0_14px_rgba(255,255,255,0.4)]` : ' border-zinc-900 bg-zinc-950'
+          opacity = edge ? 0.95 : 0.16
+        }
+
+        if (mode === 'final') {
+          className += [
+            edge ? `${tint} border-white/70 shadow-[0_0_16px_rgba(255,255,255,0.45)]` : '',
+            visible && !edge ? 'border-teal-200/40 bg-teal-300' : '',
+            !visible ? 'border-zinc-900 bg-zinc-900' : '',
+          ].join(' ')
+          opacity = visible ? 0.78 + value * 0.22 : 0.06
+        }
+
+        return (
+          <div
+            key={index}
+            className={className}
+            style={{ opacity, ...style }}
+            title={`noise ${formatPercent(value)}`}
+          />
+        )
+      })}
+    </div>
+  )
+}
+
+const breakdownPanels = [
+  {
+    title: '1. Raw noise',
+    mode: 'noise' as const,
+    description: 'The shader samples a grayscale pattern. Bright cells have higher values.',
+  },
+  {
+    title: '2. Threshold mask',
+    mode: 'mask' as const,
+    description: 'The cutoff turns grayscale into yes or no: stay visible or disappear.',
+  },
+  {
+    title: '3. Edge band',
+    mode: 'edge' as const,
+    description: 'Values near the cutoff become the glowing border.',
+  },
+  {
+    title: '4. Final dissolve',
+    mode: 'final' as const,
+    description: 'The mask hides pixels, then the edge band adds color back.',
+  },
+]
+
 export default function DissolveShaderDemo() {
   const [activePreset, setActivePreset] = useState(0)
   const [threshold, setThreshold] = useState(presets[0].threshold)
@@ -58,7 +142,7 @@ export default function DissolveShaderDemo() {
           <div className="mb-4 flex items-center justify-between gap-4">
             <div>
               <p className="text-sm font-medium uppercase tracking-[0.16em] text-teal-300">
-                Live dissolve preview
+                Dissolve pipeline
               </p>
               <h3 className="mt-1 text-xl font-semibold text-white">{active.name}</h3>
             </div>
@@ -67,28 +151,24 @@ export default function DissolveShaderDemo() {
             </span>
           </div>
 
-          <div className="relative overflow-hidden rounded-lg border border-zinc-800 bg-[radial-gradient(circle_at_30%_20%,#334155,transparent_32%),linear-gradient(135deg,#18181b,#020617)] p-3">
-            <div className="grid aspect-[3/2] grid-cols-[repeat(18,minmax(0,1fr))] gap-1">
-              {cells.map((value, index) => {
-                const visible = value >= threshold
-                const edge = Math.abs(value - threshold) <= edgeWidth
-                const opacity = visible ? 0.78 + value * 0.22 : 0.06
-
-                return (
-                  <div
-                    key={index}
-                    className={[
-                      'rounded-sm border transition-all duration-200',
-                      edge ? `${active.tint} border-white/70 shadow-[0_0_16px_rgba(255,255,255,0.45)]` : '',
-                      visible && !edge ? 'border-teal-200/40 bg-teal-300' : '',
-                      !visible ? 'border-zinc-900 bg-zinc-900' : '',
-                    ].join(' ')}
-                    style={{ opacity }}
-                    title={`noise ${formatPercent(value)}`}
+          <div className="grid gap-3 sm:grid-cols-2">
+            {breakdownPanels.map((panel) => (
+              <div key={panel.title} className="rounded-lg border border-zinc-800 bg-zinc-900/70 p-3">
+                <div className="mb-3">
+                  <h4 className="text-sm font-semibold text-white">{panel.title}</h4>
+                  <p className="mt-1 text-xs leading-5 text-zinc-400">{panel.description}</p>
+                </div>
+                <div className="overflow-hidden rounded-md border border-zinc-800 bg-[radial-gradient(circle_at_30%_20%,#334155,transparent_32%),linear-gradient(135deg,#18181b,#020617)] p-2">
+                  <CellGrid
+                    cells={cells}
+                    threshold={threshold}
+                    edgeWidth={edgeWidth}
+                    tint={active.tint}
+                    mode={panel.mode}
                   />
-                )
-              })}
-            </div>
+                </div>
+              </div>
+            ))}
           </div>
 
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
@@ -121,8 +201,8 @@ export default function DissolveShaderDemo() {
 
         <div className="flex flex-col gap-3">
           <p className="text-sm leading-6 text-zinc-400">
-            The grid stands in for a surface. Each square samples a noise value. Raising the
-            cutoff hides more squares; the edge band highlights values close to the cutoff.
+            Read the panels from left to right. The same noise pattern becomes a hard mask,
+            then a thin edge band, then the final visible dissolve.
           </p>
 
           <div className="grid gap-3">
