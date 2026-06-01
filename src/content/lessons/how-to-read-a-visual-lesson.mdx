@@ -6,8 +6,8 @@ published: true
 ---
 
 import FadeIn from '@/components/motion/FadeIn'
-import FlowCanvas from '@/components/flow/FlowCanvas'
 import VisualLessonMap from '@/components/lesson/VisualLessonMap'
+import { ReadingPathDiagram } from '@/components/lesson/VisualLessonMap'
 
 Visual lessons work best when you read them with your eyes first and the text second.
 
@@ -28,47 +28,10 @@ Hook -> Concept Map -> Demo -> Presets -> Practice
 
 ## Concept Map
 
-export const readingNodes = [
-  {
-    id: 'hook',
-    position: { x: 0, y: 0 },
-    data: { label: 'Hook' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #5eead4' },
-  },
-  {
-    id: 'concept',
-    position: { x: 0, y: 100 },
-    data: { label: 'Concept Map' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #7dd3fc' },
-  },
-  {
-    id: 'demo',
-    position: { x: 0, y: 200 },
-    data: { label: 'Demo' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
-  },
-  {
-    id: 'presets',
-    position: { x: 0, y: 300 },
-    data: { label: 'Presets' },
-    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #c084fc' },
-  },
-  {
-    id: 'practice',
-    position: { x: 0, y: 400 },
-    data: { label: 'Practice' },
-    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #fb7185' },
-  },
-]
+The concept map is the reading path. It tells you which part of the lesson to
+use first, then what to check next.
 
-export const readingEdges = [
-  { id: 'hook-concept', source: 'hook', target: 'concept', animated: true },
-  { id: 'concept-demo', source: 'concept', target: 'demo', animated: true },
-  { id: 'demo-presets', source: 'demo', target: 'presets', animated: true },
-  { id: 'presets-practice', source: 'presets', target: 'practice' },
-]
-
-<FlowCanvas nodes={readingNodes} edges={readingEdges} className="h-96" />
+<ReadingPathDiagram />
 
 ## What Each Step Does
 

@@ -107,3 +107,26 @@ export default function VisualLessonMap() {
     </div>
   )
 }
+
+export function ReadingPathDiagram() {
+  return (
+    <div className="not-prose my-8 rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5">
+      <div className="grid gap-3 sm:grid-cols-5">
+        {sections.map((section, index) => (
+          <div key={section.id} className="relative">
+            <div className={`h-full rounded-md border p-3 ${section.accent}`}>
+              <span className="flex h-7 w-7 items-center justify-center rounded-full border border-current text-xs font-semibold">
+                {index + 1}
+              </span>
+              <h3 className="mt-3 text-sm font-semibold">{section.label}</h3>
+              <p className="mt-2 text-xs leading-5 opacity-80">{section.title}</p>
+            </div>
+            {index < sections.length - 1 ? (
+              <div className="hidden sm:block absolute -right-2 top-1/2 z-10 h-px w-4 bg-zinc-600" />
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}

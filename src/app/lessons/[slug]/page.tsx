@@ -6,11 +6,21 @@ import FadeIn from '@/components/motion/FadeIn'
 import FlowCanvas from '@/components/flow/FlowCanvas'
 import R3FCanvas from '@/components/canvas/R3FCanvas'
 import VisualLessonMap from '@/components/lesson/VisualLessonMap'
+import { ReadingPathDiagram } from '@/components/lesson/VisualLessonMap'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
 import FlowMapDemo from '@/components/shader/FlowMapDemo'
 import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
 
-const components = { FadeIn, FlowCanvas, R3FCanvas, VisualLessonMap, DissolveShaderDemo, FlowMapDemo, FresnelRimDemo }
+const components = {
+  FadeIn,
+  FlowCanvas,
+  R3FCanvas,
+  VisualLessonMap,
+  ReadingPathDiagram,
+  DissolveShaderDemo,
+  FlowMapDemo,
+  FresnelRimDemo,
+}
 
 export async function generateStaticParams() {
   return getAllLessons().map((lesson) => ({ slug: lesson.slug }))
