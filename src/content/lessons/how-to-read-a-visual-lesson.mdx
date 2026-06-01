@@ -1,0 +1,104 @@
+---
+title: How To Read A Visual Lesson
+description: Learn the simple reading loop for using demos, diagrams, presets, and practice prompts.
+tags: [learning-system, onboarding, workflow]
+published: true
+---
+
+import FadeIn from '@/components/motion/FadeIn'
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import VisualLessonMap from '@/components/lesson/VisualLessonMap'
+
+Visual lessons work best when you read them with your eyes first and the text second.
+
+<FadeIn delay={0.1}>
+  The goal is not to memorize every term. The goal is to notice one change, explain it,
+  then connect that explanation to something you could build or recognize later.
+</FadeIn>
+
+Use this loop:
+
+```text
+Hook -> Concept Map -> Demo -> Presets -> Practice
+```
+
+## Visual Hook
+
+<VisualLessonMap />
+
+## Concept Map
+
+export const readingNodes = [
+  {
+    id: 'hook',
+    position: { x: 0, y: 0 },
+    data: { label: 'Hook' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #5eead4' },
+  },
+  {
+    id: 'concept',
+    position: { x: 0, y: 100 },
+    data: { label: 'Concept Map' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #7dd3fc' },
+  },
+  {
+    id: 'demo',
+    position: { x: 0, y: 200 },
+    data: { label: 'Demo' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
+  },
+  {
+    id: 'presets',
+    position: { x: 0, y: 300 },
+    data: { label: 'Presets' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #c084fc' },
+  },
+  {
+    id: 'practice',
+    position: { x: 0, y: 400 },
+    data: { label: 'Practice' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #fb7185' },
+  },
+]
+
+export const readingEdges = [
+  { id: 'hook-concept', source: 'hook', target: 'concept', animated: true },
+  { id: 'concept-demo', source: 'concept', target: 'demo', animated: true },
+  { id: 'demo-presets', source: 'demo', target: 'presets', animated: true },
+  { id: 'presets-practice', source: 'presets', target: 'practice' },
+]
+
+<FlowCanvas nodes={readingNodes} edges={readingEdges} className="h-96" />
+
+## What Each Step Does
+
+**Hook** gives you the effect before the explanation. Ask: what changed?
+
+**Concept map** shows the order of ideas. Ask: what value moves from one step to the next?
+
+**Demo** lets you test cause and effect. Move one control and describe the result.
+
+**Presets** show useful examples. Compare two presets and name the difference.
+
+**Practice** turns the idea into memory. Make a tiny transfer to a new example.
+
+## Three Useful Reading Modes
+
+- **First pass:** skim the headings and play with the visual.
+- **Second pass:** read the concept map and explain the chain out loud.
+- **Build pass:** use the practice prompt to make a small variation.
+
+## Common Mistakes
+
+- Reading the full page before looking at the demo.
+- Moving every control at once, then losing track of what caused the change.
+- Treating the diagram as decoration instead of the lesson's main path.
+- Skipping the practice prompt, which is where the idea becomes usable.
+
+## Practice
+
+Open one shader lesson. Pick a preset, change one control, and write one sentence:
+
+```text
+When I changed ____, the visual changed by ____ because ____.
+```

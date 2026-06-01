@@ -56,3 +56,12 @@ Status: complete
 - Include an adjustable rim preview.
 - Include rim power, emission intensity, and color controls.
 - Include the View Direction + Normal -> Fresnel -> Emission diagram.
+
+## Checkpoint 7: Visual Lesson Onboarding
+
+Status: complete
+
+- Publish `how-to-read-a-visual-lesson` as the onboarding lesson.
+- Include an annotated lesson layout visual.
+- Include the Hook -> Concept Map -> Demo -> Presets -> Practice diagram.
+- Keep the lesson short enough to support future readers before they enter deeper shader or tarot lessons.

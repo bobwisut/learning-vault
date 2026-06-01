@@ -26,12 +26,13 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ### Learning System: How To Read A Visual Lesson
 
-- Status: ready
+- Status: done
 - Goal: teach Bob and future users how to use the vault pages.
 - Main visual: annotated lesson layout.
 - Interaction: none required.
 - Diagram: Hook -> Concept Map -> Demo -> Presets -> Practice.
 - Notes: keep short; this should support future onboarding.
+- Lesson: `how-to-read-a-visual-lesson`
 
 ## Needs Shaping
 
