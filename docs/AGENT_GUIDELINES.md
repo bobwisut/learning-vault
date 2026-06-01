@@ -46,6 +46,10 @@ Use this learning module pattern when appropriate:
 6. Common mistakes
 7. Practice exercise
 
+For broad requests, start by filling out `docs/templates/LESSON_REQUEST.md`.
+Use `docs/BACKLOG.md` for ready lesson candidates and `docs/REVIEW_CHECKLIST.md`
+before publishing.
+
 ## Visual-First Rule
 
 Visual-first does not mean no text.
@@ -177,6 +181,7 @@ Before finishing, check:
 - Are file names clear?
 
 Trigger an independent code review when a change touches shared app structure,
-shared components, build/deploy config, MDX registration, or several files at
-once. For small single-lesson edits, lint, typecheck, build, and this checklist
-are enough by default.
+shared components, build/deploy config, MDX registration, workflow rules, or
+several files at once. Most new visual lessons require independent review
+because they usually add components and MDX registration. For small text-only
+lesson edits, lint, typecheck, build, and this checklist are enough by default.

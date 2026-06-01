@@ -31,8 +31,9 @@ Status: complete
 
 ## Checkpoint 4: Content Workflow
 
-Status: later
+Status: complete
 
 - Add a repeatable lesson request template.
 - Add review criteria for visual lessons.
 - Add a lightweight backlog for future shader, VFX, and tarot modules.
+- Link the workflow docs from agent guidance and lesson workflow.

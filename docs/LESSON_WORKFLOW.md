@@ -2,6 +2,9 @@
 
 Use this workflow when adding a new Learning Vault lesson.
 
+Start from `docs/templates/LESSON_REQUEST.md` when the request is broad or
+needs handoff to another agent.
+
 ## 1. Define The Lesson
 
 Keep the lesson narrow enough that one visual can carry the idea.
@@ -37,6 +40,8 @@ A normal visual lesson should include:
 
 ## 4. Review Before Publishing
 
+Use `docs/REVIEW_CHECKLIST.md` for the full review path.
+
 Run:
 
 ```bash
@@ -47,9 +52,17 @@ npm run build
 
 Check:
 
-- The lesson appears on the homepage.
+- The lesson appears on the homepage if `published: true`.
+- The lesson remains hidden from the homepage if `published: false`.
 - The lesson route renders.
 - The main visual is visible before heavy explanation.
-- The interaction teaches one clear idea.
+- The interaction or visual walkthrough teaches one clear idea.
 - The text is short enough to scan.
+- Most new visual lessons require independent review because they usually add a
+  component and register it for MDX. Small text-only lesson edits can skip that
+  review after local validation passes.
 
+## 5. Choose The Next Lesson
+
+Use `docs/BACKLOG.md` to pick future work. Prefer items marked `ready` unless
+Bob asks for a different topic.
