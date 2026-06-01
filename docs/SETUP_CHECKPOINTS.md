@@ -22,11 +22,12 @@ Status: complete
 
 ## Checkpoint 3: First Real Lesson
 
-Status: next
+Status: complete
 
 - Replace the demo-only foundation with one useful shader lesson.
 - Target: UV flow and dissolve shader node chain.
 - Include a node-flow diagram, visual preview, presets, beginner explanation, gotchas, and a practice prompt.
+- Publish `uv-dissolve-shader` as the first real visual lesson.
 
 ## Checkpoint 4: Content Workflow
 

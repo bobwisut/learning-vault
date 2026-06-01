@@ -1,0 +1,101 @@
+---
+title: UV Flow And Dissolve Shader
+description: A beginner-friendly visual pass through UVs, noise, threshold, alpha cutoff, and edge glow.
+tags: [shader, vfx, uv, dissolve]
+published: true
+---
+
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
+
+A dissolve shader decides which parts of a surface stay visible and which parts disappear.
+
+The useful mental model is:
+
+```text
+UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
+```
+
+## Visual Hook
+
+<DissolveShaderDemo />
+
+## Concept Map
+
+export const dissolveNodes = [
+  {
+    id: 'uv',
+    position: { x: 0, y: 70 },
+    data: { label: 'UV' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #38bdf8' },
+  },
+  {
+    id: 'noise',
+    position: { x: 160, y: 70 },
+    data: { label: 'Noise' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #a3e635' },
+  },
+  {
+    id: 'threshold',
+    position: { x: 320, y: 70 },
+    data: { label: 'Threshold' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #facc15' },
+  },
+  {
+    id: 'alpha',
+    position: { x: 500, y: 30 },
+    data: { label: 'Alpha Cutoff' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #fb7185' },
+  },
+  {
+    id: 'edge',
+    position: { x: 500, y: 130 },
+    data: { label: 'Edge Glow' },
+    style: { background: '#18181b', color: '#f4f4f5', border: '1px solid #2dd4bf' },
+  },
+  {
+    id: 'final',
+    position: { x: 700, y: 80 },
+    data: { label: 'Final Color' },
+    style: { background: '#0f172a', color: '#e2e8f0', border: '1px solid #c084fc' },
+  },
+]
+
+export const dissolveEdges = [
+  { id: 'uv-noise', source: 'uv', target: 'noise', animated: true },
+  { id: 'noise-threshold', source: 'noise', target: 'threshold', animated: true },
+  { id: 'threshold-alpha', source: 'threshold', target: 'alpha', animated: true },
+  { id: 'threshold-edge', source: 'threshold', target: 'edge', animated: true },
+  { id: 'alpha-final', source: 'alpha', target: 'final' },
+  { id: 'edge-final', source: 'edge', target: 'final' },
+]
+
+<FlowCanvas nodes={dissolveNodes} edges={dissolveEdges} />
+
+## What Each Step Does
+
+**UV** is the surface coordinate. It tells the shader where on the mesh it is sampling.
+
+**Noise** turns those coordinates into an uneven grayscale pattern.
+
+**Threshold** compares the noise value to a cutoff value. Lower cutoff means more of the surface survives. Higher cutoff means more disappears.
+
+**Alpha cutoff** hides pixels below the threshold.
+
+**Edge glow** colors the thin band near the cutoff, which makes the disappearing border readable.
+
+## Three Useful Presets
+
+- **Soft edge:** a wider glow band for magical or energy-style dissolves.
+- **Crisp cut:** a small edge band for hard digital breakup.
+- **Almost gone:** a high cutoff where only bright noise islands remain.
+
+## Common Mistakes
+
+- Using noise without UV control, which makes the pattern hard to direct.
+- Making the edge band too wide, which turns the dissolve into a blob of glow.
+- Forgetting that this web lesson is conceptual; it is not an actual Unity Shader Graph or ASE asset.
+
+## Practice
+
+Change the alpha cutoff in the demo until only small islands remain. Then widen the edge band and describe how the feeling changes.
