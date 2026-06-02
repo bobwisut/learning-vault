@@ -22,7 +22,7 @@ const cards: Card[] = [
   { number: 3,  name: 'The Empress',         keywords: ['abundance', 'nurture', 'creation'],         theme: 'Nurture',     image: `${BASE}/d/d2/RWS_Tarot_03_Empress.jpg` },
   { number: 4,  name: 'The Emperor',         keywords: ['structure', 'authority', 'stability'],      theme: 'Structure',   image: `${BASE}/c/c3/RWS_Tarot_04_Emperor.jpg` },
   { number: 5,  name: 'The Hierophant',      keywords: ['tradition', 'guidance', 'belief'],          theme: 'Tradition',   image: `${BASE}/8/8d/RWS_Tarot_05_Hierophant.jpg` },
-  { number: 6,  name: 'The Lovers',          keywords: ['choice', 'union', 'values'],                theme: 'Choice',      image: `${BASE}/3/3a/TheLovers.jpg` },
+  { number: 6,  name: 'The Lovers',          keywords: ['choice', 'union', 'values'],                theme: 'Choice',      image: `${BASE}/d/db/RWS_Tarot_06_Lovers.jpg` },
   { number: 7,  name: 'The Chariot',         keywords: ['drive', 'control', 'victory'],              theme: 'Drive',       image: `${BASE}/9/9b/RWS_Tarot_07_Chariot.jpg` },
   { number: 8,  name: 'Strength',            keywords: ['courage', 'patience', 'inner force'],       theme: 'Strength',    image: `${BASE}/f/f5/RWS_Tarot_08_Strength.jpg` },
   { number: 9,  name: 'The Hermit',          keywords: ['solitude', 'wisdom', 'inner search'],       theme: 'Reflection',  image: `${BASE}/4/4d/RWS_Tarot_09_Hermit.jpg` },
@@ -108,7 +108,7 @@ export default function MajorArcanaMap() {
               ))}
             </div>
             <p className="text-xs text-zinc-500">
-              Click another card to compare, or click again to close.
+              Click another card to explore it, or click this card again to close.
             </p>
           </div>
         </div>
