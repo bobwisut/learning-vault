@@ -68,8 +68,8 @@ function computePixel(
   speedB: number,
   blend: BlendMode,
 ): number {
-  const scaleA = 2.5
-  const scaleB = 3.8
+  const scaleA = 5.0
+  const scaleB = 7.5
   // Layer A pans horizontally; Layer B pans diagonally at a different scale
   const layerA = smoothNoise(u * scaleA + t * speedA * 0.25, v * scaleA)
   const layerB = smoothNoise(u * scaleB - t * speedB * 0.15, v * scaleB + t * speedB * 0.2)
