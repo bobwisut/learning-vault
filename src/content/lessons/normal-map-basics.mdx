@@ -1,0 +1,86 @@
+---
+title: Normal Map Basics
+description: How normal maps encode surface direction as color to make flat meshes respond to light as if they have real bumps and detail.
+tags: [shader, vfx, normals, lighting, texture]
+published: true
+---
+
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import NormalMapDemo from '@/components/shader/NormalMapDemo'
+import FadeIn from '@/components/motion/FadeIn'
+
+A normal map does not change the shape of a mesh. It changes how the lighting calculation runs on each pixel by substituting the surface normal with one read from a texture. The result is depth and detail that the mesh geometry does not actually have.
+
+<FadeIn delay={0.1}>
+  Rotate the light angle and watch all four panels respond.
+  The height map never changes — only the lighting direction does.
+</FadeIn>
+
+The useful mental model is:
+
+```text
+Height Map → Gradient → Normal (XYZ) → Encode as RGB → dot(Normal, Light) → Final Color
+```
+
+## Visual Hook
+
+<NormalMapDemo />
+
+The important idea is that a normal map is just a direction lookup table:
+
+- read a height map (or paint normals directly in a tool)
+- compute the surface gradient at each pixel
+- encode that gradient as a color (XYZ → RGB)
+- at render time, replace the mesh normal with the stored one before lighting runs
+
+The mesh geometry never changes. Only the lighting math changes per pixel.
+
+## Concept Map
+
+<FlowCanvas steps="Height Map|Gradient (dX dY)|Normal XYZ|Encode RGB|dot(N, L)|Final Color" />
+
+## What Each Step Does
+
+**Height map** is a grayscale texture: bright pixels are raised, dark pixels are recessed. This is the source of all the surface detail.
+
+**Gradient** measures how steeply the height changes in the X and Y directions at each pixel. A flat area has a gradient near zero. A sharp edge has a steep gradient.
+
+**Normal XYZ** is a unit vector pointing away from the surface at that pixel. On a perfectly flat surface, every normal points straight up: (0, 0, 1). The gradient tilts the normal left, right, forward, or back.
+
+**Encode as RGB** maps the XYZ normal into the 0–1 color range: `color = normal * 0.5 + 0.5`. That characteristic blue-purple color in normal maps is a normal pointing mostly in Z (outward), which encodes to roughly (0.5, 0.5, 1.0).
+
+**dot(N, L)** is the lighting calculation: how directly the surface faces the light. A normal pointing straight at the light returns 1 (fully lit). A normal pointing away returns 0 (in shadow).
+
+**Final color** is the base surface color multiplied by the lighting value. The flat mesh now reads as a bumpy, detailed surface.
+
+## Why Rotate the Light?
+
+The bumps in a normal map are only visible because of lighting. With light coming from directly above, the side-facing normals receive less light and look darker — that contrast creates the appearance of depth. When the light angle matches the bump direction, the surface looks flat. This is why game artists often use a low, grazing light angle to preview normal maps: it shows the most contrast.
+
+## Three Useful Presets
+
+- **Cobblestone:** medium scale, strong bumps, side lighting. Clear seams and raised stone edges.
+- **Waves:** smooth, low bump strength. Light shifts gradually across the whole surface.
+- **Rough:** high scale, exaggerated bumps. The light dot product shows sharp micro-detail.
+
+## How This Connects
+
+- The **height map** panel is the same grayscale noise from the noise lesson — noise is the most common way to generate a height map procedurally.
+- The **RGB encoding** is what you see when you open a `.png` normal map in any image editor: that blue-purple texture is a stored direction field, not a color.
+- In Amplify Shader Editor, a normal map texture feeds directly into the `Normal` input of the master node — the shader handles the dot product automatically.
+
+## Common Mistakes
+
+- Thinking the normal map adds geometry. It never does. At silhouette edges, the mesh outline is still perfectly smooth.
+- Importing a normal map as a standard texture (sRGB) instead of a normal map (linear). The colors will be wrong and the lighting will look broken.
+- Using a bump strength above 2–3. Extreme values cause the normals to fold under themselves and produce a glitchy, torn look.
+
+## Practice
+
+Set the demo to **Cobblestone**. Slowly rotate the **light angle** from 0° to 180° and watch the lighting panel. Then write one sentence:
+
+```text
+When the light direction passes directly over a raised area, that area looks ___ because ___.
+```
+
+Then set bump strength to 0 and describe what happens to the normal map panel and the final result.

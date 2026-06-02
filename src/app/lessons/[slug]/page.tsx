@@ -13,6 +13,7 @@ import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
 import MaskedColorRampDemo from '@/components/shader/MaskedColorRampDemo'
 import NoiseBasicsDemo from '@/components/shader/NoiseBasicsDemo'
 import TwoLayerUVPanningDemo from '@/components/shader/TwoLayerUVPanningDemo'
+import NormalMapDemo from '@/components/shader/NormalMapDemo'
 
 const components = {
   FadeIn,
@@ -26,6 +27,7 @@ const components = {
   MaskedColorRampDemo,
   NoiseBasicsDemo,
   TwoLayerUVPanningDemo,
+  NormalMapDemo,
 }
 
 export async function generateStaticParams() {
