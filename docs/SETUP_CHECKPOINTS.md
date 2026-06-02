@@ -65,3 +65,22 @@ Status: complete
 - Include an annotated lesson layout visual.
 - Include the Hook -> Concept Map -> Demo -> Presets -> Practice diagram.
 - Keep the lesson short enough to support future readers before they enter deeper shader or tarot lessons.
+
+## Checkpoint 8: Masked Color Ramp Lesson
+
+Status: complete
+
+- Publish `masked-color-ramp` as the third shader/VFX lesson.
+- Include a four-panel pipeline: grayscale mask, banded zones, ramp lookup, final result.
+- Include mid and high ramp stop sliders driving all panels simultaneously.
+- Include three presets (Lava, Toxic, Ice).
+
+## Checkpoint 9: Noise Basics Lesson
+
+Status: complete
+
+- Publish `noise-basics` as the fourth shader/VFX lesson.
+- Include a four-panel pipeline: UV coordinates, cell hash, smooth blend, final output.
+- Include scale and roughness sliders driving all panels simultaneously.
+- Include three presets (Organic, Gritty, Ripple).
+- Connect lesson explicitly to dissolve, color ramp, and flow map lessons.

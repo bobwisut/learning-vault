@@ -1,0 +1,84 @@
+---
+title: Noise Basics
+description: How noise functions turn UV coordinates into organic patterns for dissolve masks, smoke, water, and surface texture.
+tags: [shader, vfx, noise, texture]
+published: true
+---
+
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import NoiseBasicsDemo from '@/components/shader/NoiseBasicsDemo'
+import FadeIn from '@/components/motion/FadeIn'
+
+Noise is a function that takes a position and returns a value that looks random but is not. The same input always produces the same output. That predictability is what makes it useful in shaders.
+
+<FadeIn delay={0.1}>
+  Read the visual in four passes: UV coordinates, cell hash, smooth blend, and final output.
+  The scale and roughness sliders drive every panel at the same time.
+</FadeIn>
+
+The useful mental model is:
+
+```text
+UV Coords → Corner Hash → Smooth Blend → Contrast → Output
+```
+
+## Visual Hook
+
+<NoiseBasicsDemo />
+
+The important idea is that smooth noise is just a hash with interpolation stacked on top:
+
+- take a position in UV space
+- hash the surrounding grid-corner coordinates to get random values
+- smoothly blend between those corner values using a curve
+- apply contrast or scale to taste
+
+This is exactly what generates the grayscale mask in the dissolve lesson.
+
+## Concept Map
+
+<FlowCanvas steps="UV Coords|Corner Hash|Smooth Blend|Contrast|Output" />
+
+## What Each Step Does
+
+**UV coordinates** are the input. Every pixel on a surface has a position. The noise function reads that position and nothing else.
+
+**Cell hash** assigns a deterministic random value to each grid cell. It looks random but it is computed: the same coordinate always returns the same value. This is why noise can be pre-baked into a texture and reused.
+
+**Smooth blend** interpolates between the four surrounding corner hashes using a smooth-step curve rather than a straight line. That curve is what makes the result look organic and soft instead of blocky.
+
+**Contrast (roughness)** pushes values toward the extremes. Low roughness gives soft, almost-uniform blobs. High roughness gives sharp, crunchy edges.
+
+**Scale** zooms in or out of the noise field. Higher scale packs more cells across the surface — finer grain. Lower scale spreads fewer cells — bigger, bolder shapes.
+
+## Three Useful Presets
+
+- **Organic:** wide, soft blobs — useful for clouds, smoke, and large dissolve mask areas.
+- **Gritty:** high scale and contrast — useful for rust, surface grit, and noise overlays.
+- **Ripple:** smooth at medium scale — useful for water surfaces and flowing energy.
+
+## How This Connects
+
+The other shader lessons in this vault all depend on grayscale input values. Noise is the most common way to generate those values:
+
+- The **dissolve lesson** uses a noise mask to decide which pixels disappear.
+- The **masked color ramp** takes a grayscale value and maps it to color — noise provides that value.
+- The **flow maps lesson** pans UVs across a noise-like texture to simulate motion.
+
+Once you can read a noise pattern as a mask or a value, the other lessons become a question of what you do with that value next.
+
+## Common Mistakes
+
+- Confusing scale with resolution. Higher scale does not add more detail — it cycles the same function faster.
+- Thinking the output changes each frame. It does not unless the UV input changes over time (which is how animated noise works).
+- Expecting a real noise texture from this page. This is conceptual only; no `.png` asset is generated.
+
+## Practice
+
+Set the demo to **Organic**. Drag **Scale** to its maximum and watch the cell hash panel carefully. Then write one sentence:
+
+```text
+At high scale the cells are ___, which means the smooth blend has ___ information per pixel.
+```
+
+Then drag **Roughness** to maximum and describe what happens to the final output panel compared to the smooth blend panel.

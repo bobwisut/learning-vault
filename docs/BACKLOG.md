@@ -54,11 +54,28 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ### Shader/VFX: Masked Color Ramp
 
-- Status: needs shaping
+- Status: done
 - Goal: show how grayscale masks pick colors from a gradient.
-- Main visual: mask, gradient, and result panels.
-- Interaction: move ramp stops and swap mask patterns.
-- Open questions: should this build on the dissolve demo component?
+- Main visual: grayscale mask, banded zones, ramp lookup, and final result panels.
+- Interaction: move mid and high ramp stop positions.
+- Lesson: `masked-color-ramp`
+
+### Shader/VFX: Noise Basics
+
+- Status: done
+- Goal: explain how noise functions generate organic patterns from UV coordinates.
+- Main visual: UV coords, cell hash, smooth blend, and final output panels.
+- Interaction: scale and roughness sliders; three presets (Organic, Gritty, Ripple).
+- Lesson: `noise-basics`
+
+### Shader/VFX: Two-Layer UV Panning
+
+- Status: ready next
+- Goal: show how panning two UV layers at different speeds creates complex organic motion.
+- Main visual: layer A, layer B, and combined output panels.
+- Interaction: speed and direction controls for each layer independently.
+- Diagram: UV Layer A → Offset · UV Layer B → Offset → Combine → Output.
+- Notes: builds on UV panning lesson; conceptual only, no Unity assets.
 
 ## Parking Lot
 
