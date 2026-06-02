@@ -5,10 +5,12 @@ import { useEffect, useRef, useState } from 'react'
 const CANVAS_W = 192
 const CANVAS_H = 120
 
+type Pattern = 'bricks' | 'ripples' | 'dots'
 type PanelMode = 'height' | 'normals' | 'lighting' | 'final'
 
 type Preset = {
   name: string
+  pattern: Pattern
   scale: number
   bumpStrength: number
   lightAngle: number
@@ -17,54 +19,79 @@ type Preset = {
 
 const presets: Preset[] = [
   {
-    name: 'Cobblestone',
-    scale: 6,
+    name: 'Bricks',
+    pattern: 'bricks',
+    scale: 4,
     bumpStrength: 1.2,
     lightAngle: 45,
-    description: 'Medium-scale bumps with clear edges. Strong side lighting reveals the seams.',
+    description: 'Flat tops, sharp mortar grooves. The edges create steep gradients — clear in every panel.',
   },
   {
-    name: 'Waves',
-    scale: 3,
-    bumpStrength: 0.6,
+    name: 'Ripples',
+    pattern: 'ripples',
+    scale: 4,
+    bumpStrength: 0.8,
     lightAngle: 120,
-    description: 'Smooth, rolling surface. Gentle normals catch light softly across the whole surface.',
+    description: 'Concentric rings. The normal direction sweeps continuously around each circle.',
   },
   {
-    name: 'Rough',
-    scale: 10,
-    bumpStrength: 1.8,
+    name: 'Dots',
+    pattern: 'dots',
+    scale: 5,
+    bumpStrength: 1.0,
     lightAngle: 200,
-    description: 'High-frequency noise with exaggerated bump strength. Looks like raw stone or bark.',
+    description: 'Smooth hemispheres on a grid. The rounded top catches light evenly; edges fall off sharply.',
   },
 ]
 
-function hash2(ix: number, iy: number): number {
-  const x = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453
-  return x - Math.floor(x)
+function smoothStep(edge0: number, edge1: number, x: number): number {
+  const t = Math.max(0, Math.min(1, (x - edge0) / (edge1 - edge0)))
+  return t * t * (3 - 2 * t)
 }
 
-function smoothNoise(u: number, v: number): number {
-  const ix = Math.floor(u)
-  const iy = Math.floor(v)
-  const tx = u - ix
-  const ty = v - iy
-  const sx = tx * tx * (3 - 2 * tx)
-  const sy = ty * ty * (3 - 2 * ty)
-  const a = hash2(ix, iy)
-  const b = hash2(ix + 1, iy)
-  const c = hash2(ix, iy + 1)
-  const d = hash2(ix + 1, iy + 1)
-  return a + (b - a) * sx + (c - a) * sy + (d - b - c + a) * sx * sy
+function bricksHeight(u: number, v: number, scale: number): number {
+  const row = Math.floor(v * scale)
+  const offset = (row % 2) * 0.5
+  const bu = ((u * scale * 2 + offset) % 1 + 1) % 1
+  const bv = (v * scale % 1 + 1) % 1
+  const margin = 0.1
+  const ex = smoothStep(0, margin, bu) * (1 - smoothStep(1 - margin, 1, bu))
+  const ey = smoothStep(0, margin, bv) * (1 - smoothStep(1 - margin, 1, bv))
+  return ex * ey
 }
 
-function getHeight(u: number, v: number, scale: number): number {
-  return smoothNoise(u * scale, v * scale)
+function ripplesHeight(u: number, v: number, scale: number): number {
+  const cu = (u * scale % 1 + 1) % 1 - 0.5
+  const cv = (v * scale % 1 + 1) % 1 - 0.5
+  const dist = Math.sqrt(cu * cu + cv * cv)
+  const rings = Math.cos(dist * Math.PI * 6) * 0.5 + 0.5
+  const fade = 1 - smoothStep(0.3, 0.5, dist)
+  return rings * fade
+}
+
+function dotsHeight(u: number, v: number, scale: number): number {
+  const cu = (u * scale % 1 + 1) % 1 - 0.5
+  const cv = (v * scale % 1 + 1) % 1 - 0.5
+  const dist = Math.sqrt(cu * cu + cv * cv)
+  const radius = 0.38
+  if (dist >= radius) return 0
+  // Smooth hemisphere profile
+  const t = 1 - dist / radius
+  return t * t * (3 - 2 * t)
+}
+
+function getHeight(u: number, v: number, pattern: Pattern, scale: number): number {
+  switch (pattern) {
+    case 'bricks': return bricksHeight(u, v, scale)
+    case 'ripples': return ripplesHeight(u, v, scale)
+    case 'dots': return dotsHeight(u, v, scale)
+  }
 }
 
 function drawPanel(
   canvas: HTMLCanvasElement,
   mode: PanelMode,
+  pattern: Pattern,
   scale: number,
   bumpStrength: number,
   lightAngle: number,
@@ -74,7 +101,6 @@ function drawPanel(
   const imageData = ctx.createImageData(CANVAS_W, CANVAS_H)
 
   const rad = (lightAngle * Math.PI) / 180
-  // Light direction in XYZ; Z is always positive (light coming from above the surface)
   const lx = Math.cos(rad)
   const ly = Math.sin(rad)
   const lz = 0.6
@@ -88,11 +114,10 @@ function drawPanel(
       const u = x / CANVAS_W
       const v = y / CANVAS_H
 
-      const h = getHeight(u, v, scale)
+      const h = getHeight(u, v, pattern, scale)
+      const dhx = (getHeight(u + eps, v, pattern, scale) - getHeight(u - eps, v, pattern, scale)) / (2 * eps)
+      const dhy = (getHeight(u, v + eps, pattern, scale) - getHeight(u, v - eps, pattern, scale)) / (2 * eps)
 
-      // Derive surface normal from finite-difference height gradient
-      const dhx = (getHeight(u + eps, v, scale) - getHeight(u - eps, v, scale)) / (2 * eps)
-      const dhy = (getHeight(u, v + eps, scale) - getHeight(u, v - eps, scale)) / (2 * eps)
       const nx = -dhx * bumpStrength
       const ny = -dhy * bumpStrength
       const nz = 1.0
@@ -105,21 +130,17 @@ function drawPanel(
         const gv = Math.round(h * 255)
         r = g = b = gv
       } else if (mode === 'normals') {
-        // Encode normal as RGB: (n * 0.5 + 0.5) — the classic normal map encoding
         r = Math.round((normal[0] * 0.5 + 0.5) * 255)
         g = Math.round((normal[1] * 0.5 + 0.5) * 255)
         b = Math.round((normal[2] * 0.5 + 0.5) * 255)
       } else if (mode === 'lighting') {
-        // Dot product of normal with light direction (diffuse term only)
         const dot = Math.max(0, normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2])
         const gv = Math.round(dot * 255)
         r = g = b = gv
       } else if (mode === 'final') {
-        // Base color (warm stone) × diffuse lighting + small ambient
         const dot = Math.max(0, normal[0] * lightDir[0] + normal[1] * lightDir[1] + normal[2] * lightDir[2])
         const ambient = 0.15
         const light = ambient + dot * 0.85
-        // Warm gray base tinted slightly by height
         r = Math.round(Math.min(255, (170 + h * 40) * light))
         g = Math.round(Math.min(255, (155 + h * 35) * light))
         b = Math.round(Math.min(255, (140 + h * 25) * light))
@@ -139,13 +160,13 @@ const breakdownPanels: { title: string; mode: PanelMode; description: string }[]
   {
     title: '1. Height map',
     mode: 'height',
-    description: 'A grayscale texture where bright = raised and dark = recessed. This drives everything.',
+    description: 'A grayscale pattern: bright = raised, dark = recessed. This drives everything.',
   },
   {
     title: '2. Normal map',
     mode: 'normals',
     description:
-      'Normals derived from the height gradient, encoded as RGB. That signature blue-purple is Z pointing outward.',
+      'Surface directions derived from the height gradient, encoded as RGB. Flat tops are blue; slopes shift toward red or green.',
   },
   {
     title: '3. Light dot product',
@@ -155,28 +176,29 @@ const breakdownPanels: { title: string; mode: PanelMode; description: string }[]
   {
     title: '4. Final result',
     mode: 'final',
-    description: 'Base color multiplied by the lighting. The flat mesh now reads as a bumpy surface.',
+    description: 'Base color × lighting. The flat mesh now reads as a surface with real depth.',
   },
 ]
 
 function NormalCanvas({
   mode,
+  pattern,
   scale,
   bumpStrength,
   lightAngle,
 }: {
   mode: PanelMode
+  pattern: Pattern
   scale: number
   bumpStrength: number
   lightAngle: number
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
-
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-    drawPanel(canvas, mode, scale, bumpStrength, lightAngle)
-  }, [mode, scale, bumpStrength, lightAngle])
+    drawPanel(canvas, mode, pattern, scale, bumpStrength, lightAngle)
+  }, [mode, pattern, scale, bumpStrength, lightAngle])
 
   return (
     <canvas
@@ -207,12 +229,14 @@ function LightAngleIndicator({ angle }: { angle: number }) {
 
 export default function NormalMapDemo() {
   const [activePreset, setActivePreset] = useState(0)
+  const [pattern, setPattern] = useState<Pattern>(presets[0].pattern)
   const [scale, setScale] = useState(presets[0].scale)
   const [bumpStrength, setBumpStrength] = useState(presets[0].bumpStrength)
   const [lightAngle, setLightAngle] = useState(presets[0].lightAngle)
 
   function applyPreset(index: number) {
     setActivePreset(index)
+    setPattern(presets[index].pattern)
     setScale(presets[index].scale)
     setBumpStrength(presets[index].bumpStrength)
     setLightAngle(presets[index].lightAngle)
@@ -246,6 +270,7 @@ export default function NormalMapDemo() {
                 </div>
                 <NormalCanvas
                   mode={panel.mode}
+                  pattern={pattern}
                   scale={scale}
                   bumpStrength={bumpStrength}
                   lightAngle={lightAngle}
@@ -262,7 +287,7 @@ export default function NormalMapDemo() {
               <input
                 type="range"
                 min="1"
-                max="14"
+                max="10"
                 step="0.5"
                 value={scale}
                 onChange={(e) => setScale(Number(e.target.value))}
