@@ -48,11 +48,11 @@ export default function LessonSearch({ lessons }: { lessons: LessonMeta[] }) {
             <path d="M10.5 10.5L14 14" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
           </svg>
           <input
-            type="search"
+            type="text"
             placeholder="Search lessons…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-11 pr-4 text-base text-zinc-100 placeholder-zinc-500 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-11 pr-4 text-lg font-normal text-white placeholder-zinc-500 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
           />
         </div>
 
