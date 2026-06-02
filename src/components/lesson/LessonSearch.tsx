@@ -38,9 +38,9 @@ export default function LessonSearch({ lessons }: { lessons: LessonMeta[] }) {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="relative flex-1">
           <svg
-            className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"
-            width="16"
-            height="16"
+            className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500"
+            width="18"
+            height="18"
             viewBox="0 0 16 16"
             fill="none"
           >
@@ -52,7 +52,7 @@ export default function LessonSearch({ lessons }: { lessons: LessonMeta[] }) {
             placeholder="Search lessons…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-2 pl-9 pr-4 text-sm text-zinc-100 placeholder-zinc-500 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 py-3 pl-11 pr-4 text-base text-zinc-100 placeholder-zinc-500 outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500"
           />
         </div>
 
