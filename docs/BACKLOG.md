@@ -70,12 +70,11 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ### Shader/VFX: Two-Layer UV Panning
 
-- Status: ready next
+- Status: done
 - Goal: show how panning two UV layers at different speeds creates complex organic motion.
-- Main visual: layer A, layer B, and combined output panels.
-- Interaction: speed and direction controls for each layer independently.
-- Diagram: UV Layer A → Offset · UV Layer B → Offset → Combine → Output.
-- Notes: builds on UV panning lesson; conceptual only, no Unity assets.
+- Main visual: animated 4-panel pipeline (layer A, layer B, combined, final). Canvas-based.
+- Interaction: speed sliders per layer, multiply/add blend toggle, three presets (Water, Magma, Energy).
+- Lesson: `two-layer-uv-panning`
 
 ## Parking Lot
 

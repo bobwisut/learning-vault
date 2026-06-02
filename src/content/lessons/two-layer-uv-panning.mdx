@@ -1,0 +1,87 @@
+---
+title: Two-Layer UV Panning
+description: How combining two noise layers scrolling at different speeds creates complex organic motion that a single layer cannot produce.
+tags: [shader, vfx, uv, panning, noise]
+published: true
+---
+
+import FlowCanvas from '@/components/flow/FlowCanvas'
+import TwoLayerUVPanningDemo from '@/components/shader/TwoLayerUVPanningDemo'
+import FadeIn from '@/components/motion/FadeIn'
+
+A single panning noise layer looks mechanical — the same pattern looping past. Two layers at different speeds interact and produce patterns that feel alive, because the combination never exactly repeats in the same way.
+
+<FadeIn delay={0.1}>
+  Watch all four panels at the same time. Layer A and Layer B move independently.
+  The combined and final panels show what their interaction produces.
+</FadeIn>
+
+The useful mental model is:
+
+```text
+UV Layer A → Offset(t × speedA) ↘
+                                  Blend → Contrast → Output
+UV Layer B → Offset(t × speedB) ↗
+```
+
+## Visual Hook
+
+<TwoLayerUVPanningDemo />
+
+The key insight is that the combined output is more complex than either layer alone:
+
+- Layer A pans one direction at one speed
+- Layer B pans a different direction at a different speed
+- Where they overlap, the blend amplifies or reveals structure
+- The result evolves continuously — neither layer completes its cycle at the same time
+
+## Concept Map
+
+<FlowCanvas steps="UV Layer A|UV Layer B|Blend (× or +)|Contrast|Output" />
+
+## What Each Step Does
+
+**UV Layer A** scrolls a coarser noise pattern in one direction. On its own it looks like a simple sliding texture.
+
+**UV Layer B** scrolls a finer pattern at a different speed and angle. On its own it also looks simple.
+
+**Blend** is where the complexity comes from. Two blend modes:
+
+- **Multiply** — only areas where *both* layers are bright stay bright. Darker, more defined shapes with strong contrast.
+- **Add** — areas where either layer is bright contribute to the result. Brighter overall, with flaring hotspots.
+
+**Contrast** stretches the blended values across the full 0–1 range, making the result crisper and more usable as a mask or texture input.
+
+## Why the Speed Ratio Matters
+
+If both layers move at the same speed, they behave like one layer — no new complexity. The interesting behavior comes from the *difference* in speed. A 2:1 ratio means the combined pattern shifts visibly every cycle. A 7:3 ratio creates longer-period variation before the combination repeats.
+
+Try setting both sliders to the same value and watching the combined panel go flat.
+
+## How This Connects
+
+- The **UV panning lesson** covers single-layer scrolling — this builds directly on that.
+- The output can feed the **dissolve lesson** threshold — a two-layer mask dissolves more organically than a single-layer one.
+- It can also feed the **masked color ramp** — the combined pattern drives color assignment.
+
+## Three Useful Presets
+
+- **Water:** slow base with faster ripple, multiplied. Creates shifting troughs and peaks.
+- **Magma:** both layers slow and coarse. The long-period interaction produces churning blobs.
+- **Energy:** fast layers added. Bright hotspots flare where both layers briefly align.
+
+## Common Mistakes
+
+- Using the same scale for both layers. Different scales create different detail levels, which is most of where the richness comes from.
+- Adding too many layers. Two well-chosen layers are usually enough; three or more often just look noisy.
+- Forgetting to stretch contrast after blending. Multiply especially compresses the output range — the final contrast step recovers the full signal.
+
+## Practice
+
+Set the demo to **Water** with **Multiply** blend. Drag Layer B speed to **0** and watch the combined panel. Then write one sentence:
+
+```text
+When Layer B is stopped, the combined output looks ___ because ___.
+```
+
+Then slowly raise Layer B speed and describe when the combined panel starts to feel alive.
