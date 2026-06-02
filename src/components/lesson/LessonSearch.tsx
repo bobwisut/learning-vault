@@ -35,8 +35,8 @@ export default function LessonSearch({ lessons }: { lessons: LessonMeta[] }) {
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <div className="relative flex-1">
+      <div className="flex flex-col gap-3">
+        <div className="relative w-full">
           <svg
             className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500"
             width="18"
