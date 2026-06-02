@@ -14,6 +14,7 @@ import MaskedColorRampDemo from '@/components/shader/MaskedColorRampDemo'
 import NoiseBasicsDemo from '@/components/shader/NoiseBasicsDemo'
 import TwoLayerUVPanningDemo from '@/components/shader/TwoLayerUVPanningDemo'
 import NormalMapDemo from '@/components/shader/NormalMapDemo'
+import GlossaryViewer from '@/components/shader/GlossaryViewer'
 
 const components = {
   FadeIn,
@@ -28,6 +29,7 @@ const components = {
   NoiseBasicsDemo,
   TwoLayerUVPanningDemo,
   NormalMapDemo,
+  GlossaryViewer,
 }
 
 export async function generateStaticParams() {
