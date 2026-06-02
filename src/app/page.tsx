@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { getAllLessons } from '@/lib/lessons'
+import LessonSearch from '@/components/lesson/LessonSearch'
 
 const focusAreas = [
   'Shader and VFX concepts',
@@ -91,38 +91,10 @@ export default function Home() {
               </p>
               <h2 className="mt-2 text-2xl font-semibold text-white">Available modules</h2>
             </div>
-            <p className="text-sm text-zinc-500">{lessons.length} published</p>
+            <p className="text-sm text-zinc-500">{lessons.length} lessons</p>
           </div>
 
-          {lessons.length === 0 ? (
-            <p className="rounded-lg border border-zinc-800 bg-zinc-900 p-5 text-zinc-500">
-              No published lessons yet.
-            </p>
-          ) : (
-            <ul className="grid gap-4 md:grid-cols-2">
-              {lessons.map((lesson) => (
-                <li key={lesson.slug}>
-                  <Link
-                    href={`/lessons/${lesson.slug}`}
-                    className="block h-full rounded-lg border border-zinc-800 bg-zinc-900 p-5 transition-colors hover:border-teal-500/70 hover:bg-zinc-900/80"
-                  >
-                    <h3 className="text-lg font-semibold text-white">{lesson.title}</h3>
-                    <p className="mt-2 text-sm leading-6 text-zinc-400">{lesson.description}</p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {lesson.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-zinc-700 bg-zinc-950 px-2 py-0.5 text-xs text-zinc-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          )}
+          <LessonSearch lessons={lessons} />
         </section>
       </div>
     </main>
