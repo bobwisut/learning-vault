@@ -4,7 +4,7 @@ _Last updated: 2026-06-03_
 
 ## Project Purpose
 
-Learning Vault is Bob's personal visual-first learning system for difficult topics. The current focus is shader and VFX lessons, with tarot and other learning domains added alongside.
+Learning Vault is Bob's personal visual-first learning system **for Bob to learn topics he wants to learn**. The current shader/VFX and tarot lessons cover things Bob already knows — they exist mainly to establish a reusable lesson **template/blueprint** so that producing a lesson on an *unknown* topic (where Bob has no prior expertise) becomes as easy as possible. Implication for design decisions: prize formats and patterns that are **portable and easy to author for any future topic**, not just maximally polished on the current known domains. A shader-only enhancement that can't transfer to a topic without a custom demo is "icing," not the blueprint.
 
 ## Current Goal
 

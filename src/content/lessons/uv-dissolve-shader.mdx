@@ -34,21 +34,13 @@ It is several small decisions stacked together:
 - hide one side of the comparison
 - color the values close to the cutoff
 
-## Concept Map
+## Signal Chain
 
-<FlowCanvas steps="UV :: the surface :: gives each pixel a coordinate :: feeds all four panels | Noise :: UV coordinate :: coordinate → grayscale value :: raw-noise panel | Threshold :: noise value + cutoff :: splits pixels into keep vs hide :: mask panel, as you drag cutoff | Alpha Cutoff + Edge Glow :: the threshold mask :: hides one side, lights the border band :: edge band, as you change width | Final Color :: all steps combined :: composites into the visible result :: final panel" />
+Each node shows the value it outputs — watch the grayscale become a mask, then an edge, then the final dissolve.
 
-## What Each Step Does
+<DissolveSignalChain />
 
-**UV** is the surface coordinate. It tells the shader where on the mesh it is sampling.
-
-**Noise** gives each point on the surface a grayscale value.
-
-**Threshold** compares each noise value to the cutoff slider. Lower cutoff means more of the surface survives. Higher cutoff means more disappears.
-
-**Alpha cutoff** hides pixels below the threshold.
-
-**Edge glow** colors the thin band near the cutoff, which makes the disappearing border readable.
+The one detail the chain leaves implicit: the **cutoff** is what you steer. Lower cutoff keeps more of the surface; higher cutoff removes more. Everything else follows from where you put that line.
 
 ## Three Useful Presets
 

@@ -9,6 +9,7 @@ import VisualLessonMap from '@/components/lesson/VisualLessonMap'
 import { ReadingPathDiagram } from '@/components/lesson/VisualLessonMap'
 import LessonLink from '@/components/lesson/LessonLink'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
+import DissolveSignalChain from '@/components/shader/DissolveSignalChain'
 import FlowMapDemo from '@/components/shader/FlowMapDemo'
 import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
 import MaskedColorRampDemo from '@/components/shader/MaskedColorRampDemo'
@@ -26,6 +27,7 @@ const components = {
   ReadingPathDiagram,
   LessonLink,
   DissolveShaderDemo,
+  DissolveSignalChain,
   FlowMapDemo,
   FresnelRimDemo,
   MaskedColorRampDemo,
