@@ -73,6 +73,15 @@ Once you can read a noise pattern as a mask or a value, the other lessons become
 - Thinking the output changes each frame. It does not unless the UV input changes over time (which is how animated noise works).
 - Expecting a real noise texture from this page. This is conceptual only; no `.png` asset is generated.
 
+## Shader Graph Equivalent
+
+In Unity Shader Graph, this whole pipeline is a single **Simple Noise** node —
+its internal hash-and-smooth-blend is exactly the corner hash and smooth blend
+above — with the **Scale** input as your scale. Follow it with a **Contrast** (or
+**Power**) node for roughness. **Gradient Noise** is the Perlin-style variant.
+This page teaches the node wiring only; it does not generate a real `.shadergraph`
+asset or noise texture.
+
 ## Practice
 
 Set the demo to **Organic**. Drag **Scale** to its maximum and watch the cell hash panel carefully. Then write one sentence:

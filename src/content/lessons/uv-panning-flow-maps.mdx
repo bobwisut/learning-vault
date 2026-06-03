@@ -62,7 +62,16 @@ the idea conceptually.
 
 - Panning too fast, which makes the surface look like a screen instead of material.
 - Moving only one layer, which can feel flat; later lessons can stack two panners.
-- Forgetting that this is conceptual web teaching, not a Unity material or ASE graph file.
+- Forgetting that this is conceptual web teaching, not a real Unity Shader Graph asset.
+
+## Shader Graph Equivalent
+
+In Unity Shader Graph, panning is a **Tiling And Offset** node whose **Offset**
+is **Time** multiplied by your direction vector, feeding the UV of a **Sample
+Texture 2D** into **Base Color**. The flow bend adds a flow (or normal) texture:
+sample it, remap to -1..1, and add it into that offset so the motion curves
+locally. This page teaches the node wiring only; it does not generate a real
+`.shadergraph` asset or flow-map texture.
 
 ## Practice
 

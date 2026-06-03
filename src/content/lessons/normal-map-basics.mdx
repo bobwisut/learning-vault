@@ -67,13 +67,22 @@ The bumps in a normal map are only visible because of lighting. With light comin
 
 - The **height map** panel is the same grayscale noise from the <LessonLink slug="noise-basics">noise lesson</LessonLink> — noise is the most common way to generate a height map procedurally.
 - The **RGB encoding** is what you see when you open a `.png` normal map in any image editor: that blue-purple texture is a stored direction field, not a color.
-- In Amplify Shader Editor, a normal map texture feeds directly into the `Normal` input of the master node — the shader handles the dot product automatically.
+- In Unity Shader Graph, a normal map feeds directly into the **Normal (Tangent Space)** fragment input — a lit graph handles the dot product with the light automatically.
 
 ## Common Mistakes
 
 - Thinking the normal map adds geometry. It never does. At silhouette edges, the mesh outline is still perfectly smooth.
 - Importing a normal map as a standard texture (sRGB) instead of a normal map (linear). The colors will be wrong and the lighting will look broken.
 - Using a bump strength above 2–3. Extreme values cause the normals to fold under themselves and produce a glitchy, torn look.
+
+## Shader Graph Equivalent
+
+In Unity Shader Graph, an authored normal map is a **Sample Texture 2D** with
+**Type: Normal** plugged into the **Normal (Tangent Space)** fragment input. To
+build one from a height map instead, use the **Normal From Height** node. Either
+way a lit graph computes the lighting dot product automatically. This page
+teaches the node wiring only; it does not generate a real `.shadergraph` asset
+or normal map texture.
 
 ## Practice
 

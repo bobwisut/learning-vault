@@ -76,6 +76,14 @@ Try setting both sliders to the same value and watching the combined panel go fl
 - Adding too many layers. Two well-chosen layers are usually enough; three or more often just look noisy.
 - Forgetting to stretch contrast after blending. Multiply especially compresses the output range — the final contrast step recovers the full signal.
 
+## Shader Graph Equivalent
+
+In Unity Shader Graph, this is two **Tiling And Offset** nodes — each **Offset**
+is **Time** times a different speed — feeding two **Simple Noise** (or **Sample
+Texture 2D**) nodes, combined with a **Multiply** or **Add**, then a **Contrast**
+node to recover the range. This page teaches the node wiring only; it does not
+generate a real `.shadergraph` asset.
+
 ## Practice
 
 Set the demo to **Water** with **Multiply** blend. Drag Layer B speed to **0** and watch the combined panel. Then write one sentence:

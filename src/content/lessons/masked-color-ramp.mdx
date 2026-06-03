@@ -71,11 +71,13 @@ value picks a spot on the ramp, and the ramp returns the final color:
 - Forgetting that the mask never changed; only the mapping did.
 - Thinking this web lesson exports a real ramp texture; it is conceptual only.
 
-## ASE Equivalent
+## Shader Graph Equivalent
 
-In Amplify Shader Editor, this is a grayscale value feeding a gradient or ramp node
-(often a ramp texture sampled by the mask). This page teaches the mapping logic only;
-it does not generate a real ASE graph or ramp texture asset.
+In Unity Shader Graph, the grayscale mask drives the **Time** input of a **Sample
+Gradient** node, and that gradient's stops are your ramp colors — the output goes
+to **Base Color**. A ramp texture sampled by the mask (a **Sample Texture 2D**
+with the mask as the U coordinate) does the same job. This page teaches the
+mapping logic only; it does not generate a real `.shadergraph` asset or ramp texture.
 
 ## Practice
 

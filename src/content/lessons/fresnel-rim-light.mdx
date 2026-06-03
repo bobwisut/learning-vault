@@ -67,7 +67,14 @@ faces the camera and high near the silhouette edge.
 
 - Setting rim power too high, which makes the glow disappear into a thin line.
 - Using too much emission, which can flatten the object into a neon sticker.
-- Treating this as a real engine shader; this is a conceptual web lesson, not a Unity or ASE asset.
+- Treating this as a real engine shader; this is a conceptual web lesson, not a real Unity Shader Graph asset.
+
+## Shader Graph Equivalent
+
+Unity Shader Graph has a literal **Fresnel Effect** node — Normal and View
+Direction are wired automatically, and its **Power** input is your rim power.
+Multiply its output by a rim color and feed that into **Emission**. This page
+teaches the node wiring only; it does not generate a real `.shadergraph` asset.
 
 ## Practice
 

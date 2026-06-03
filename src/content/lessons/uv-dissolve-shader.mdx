@@ -66,14 +66,16 @@ It is several small decisions stacked together:
 
 - Using noise without UV control, which makes the pattern hard to direct.
 - Making the edge band too wide, which turns the dissolve into a blob of glow.
-- Forgetting that this web lesson is conceptual; it is not an actual Unity Shader Graph or ASE asset.
+- Forgetting that this web lesson is conceptual; it is not an actual Unity Shader Graph asset.
 
-## ASE Equivalent
+## Shader Graph Equivalent
 
-In Amplify Shader Editor, this would be built from equivalent nodes for UV
-coordinates, noise sampling, comparison or step logic, alpha clipping, and an
-emissive edge band. This page teaches the connection logic only; it does not
-generate a real ASE graph file.
+In Unity Shader Graph, this maps to a **Simple Noise** node feeding a **Step**
+node (the Edge input is your dissolve threshold), wired into **Alpha** with
+**Alpha Clip Threshold** enabled in the Graph Settings. The edge glow is a thin
+band — a **Smoothstep**, or the difference of two Steps, around the threshold —
+multiplied by a color into **Emission**. This page teaches the node wiring only;
+it does not generate a real `.shadergraph` asset.
 
 ## Practice
 

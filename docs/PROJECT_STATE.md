@@ -18,7 +18,6 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 
 ## Active Checkpoints
 
-- [ ] Decide ASE Equivalent policy: it exists as a dedicated section on only 2 shader lessons (UV Dissolve, Masked Color Ramp) plus an inline mention on Normal Map Basics. Either add to all shader lessons or drop the standalone sections.
 - [ ] Pick the next lesson from `docs/BACKLOG.md`.
 - [ ] Keep each lesson aligned with the visual lesson workflow and review checklist.
 - [ ] Verify GitHub Pages after publishing new lessons.
@@ -30,11 +29,11 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - [x] Renamed "UV Flow And Dissolve Shader" -> "UV Dissolve Shader" (slug unchanged) to remove overlap with the Flow Maps lesson.
 - [x] Added a `LessonLink` component (next/link, auto-prefixes the GitHub Pages basePath) and wired real cross-lesson links into every "How This Connects" section; added that section to the 4 shaders that lacked it.
 - [x] Standardized section heading to "Three Useful Presets" and mental-model arrows to Unicode `→` across all lessons.
+- [x] Replaced "ASE Equivalent" with a "Shader Graph Equivalent" section on all 7 shader lessons (Bob's familiar field; node mappings are verifiable). Kept conceptual — node wiring only, no `.shadergraph` assets.
 - [x] Added lesson workflow docs, review checklist, backlog, and lesson request template.
 
 ## Blocked / Waiting
 
-- ASE Equivalent consistency decision (see Active Checkpoints) — awaiting Bob.
 - Needs confirmation if any future lesson should use real engine-specific assets instead of conceptual web diagrams.
 
 ## Important Decisions
@@ -46,6 +45,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - Localization: Thai is reserved for tarot-type lessons we plan to localize (e.g. Major Arcana). Shader lessons stay English-only; no Thai toggle on shaders.
 - Cross-lesson references must use the `LessonLink` component, never raw markdown links — raw links do not get the `/learning-vault` basePath in production and break on GitHub Pages.
 - Section naming standard: "Three Useful Presets". Mental-model arrows: Unicode `→`.
+- Engine-mapping sections use **Unity Shader Graph** ("Shader Graph Equivalent"), not Amplify Shader Editor. Bob's familiar field. Keep them conceptual: node names/wiring only, never `.shadergraph` asset files.
 - Most new visual lessons should get independent review because they usually add a component and register it for MDX.
 - The four-panel visual pipeline is the preferred pattern for shader lessons when it fits the concept.
 - Active repo is `C:\Users\Wisut\.openclaw\workspace\learning-vault`; the older `D:\Projects\learning-vault` copy is stale.
@@ -64,7 +64,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 
 ## Next Recommended Action
 
-Get Bob's call on the ASE Equivalent policy, then pick the next lesson from `docs/BACKLOG.md` using `docs/templates/LESSON_REQUEST.md` and validate with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
+Pick the next lesson from `docs/BACKLOG.md` using `docs/templates/LESSON_REQUEST.md` and validate with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
 
 ## Notes for Future Agents
 
