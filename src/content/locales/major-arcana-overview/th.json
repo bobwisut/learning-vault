@@ -1,0 +1,190 @@
+{
+  "intro": [
+    "Major Arcana เล่าเรื่องราวเดียว — การเดินทางของจิตวิญญาณจากจุดเริ่มต้นที่บริสุทธิ์ไร้เดียงสา จนถึงการรวมเป็นหนึ่งเดียวที่สมบูรณ์ ไพ่แต่ละใบคือขั้นตอน ไม่ใช่สัญลักษณ์ที่แยกจากกัน",
+    "อ่านตามลำดับ 0 ถึง 21 แล้วจะเห็นรูปแบบ The Fool ออกเดินทาง ไพ่ชุดต้น (I–VII) สร้างตัวตนและเจตจำนง ไพ่ชุดกลาง (VIII–XIV) ทดสอบและกลั่นกรองมัน ไพ่ชุดปลาย (XV–XXI) ทลายมันลงแล้วสร้างขึ้นใหม่ให้สมบูรณ์กว่าเดิม"
+  ],
+  "cardsHeading": "ไพ่ทั้ง 22 ใบ",
+  "cardsInstruction": "คลิกที่ไพ่ใดก็ได้เพื่อดูคำสำคัญและธีมหลัก",
+  "journeyHeading": "การเดินทางใน 3 บท",
+  "chapters": [
+    {
+      "title": "บทที่ 1 — สร้างตัวตน (0–VII)",
+      "body": "The Fool ก้าวเข้าสู่โลกและพบกับเครื่องมือแห่งจิตสำนึก ได้แก่ เจตจำนง สัญชาตญาณ การดูแลเลี้ยงดู โครงสร้าง ประเพณี การเลือก และแรงขับ ไพ่กลุ่มนี้ตอบคำถามว่า",
+      "question": "ฉันเป็นใคร และฉันทำอะไรได้บ้าง?"
+    },
+    {
+      "title": "บทที่ 2 — ทดสอบตัวตน (VIII–XIV)",
+      "body": "การเดินทางหันเข้าสู่ภายใน ความเข้มแข็ง การไตร่ตรอง โชคชะตา ความสมดุล การยอมวาง การเปลี่ยนผ่าน และความพอดี ไพ่กลุ่มนี้ตอบคำถามว่า",
+      "question": "ฉันเชื่อในอะไรอย่างแท้จริง และต้องปล่อยวางอะไร?"
+    },
+    {
+      "title": "บทที่ 3 — สลายและกลายเป็น (XV–XXI)",
+      "body": "เงามืด การพังทลายฉับพลัน แล้วตามมาด้วยความหวัง ความลึกลับ ความสุข การตื่นรู้ และในที่สุด — ความสมบูรณ์ ไพ่กลุ่มนี้ตอบคำถามว่า",
+      "question": "ฉันกำลังกลายเป็นอะไรมาตลอด?"
+    }
+  ],
+  "useHeading": "วิธีใช้แผนที่นี้",
+  "useBody": [
+    "ไพ่ใบเดียวคือโจทย์ ไม่ใช่คำตัดสิน เมื่อไพ่ปรากฏในการอ่าน คำถามที่มีประโยชน์ไม่ใช่ \"มันทำนายอะไร?\" แต่คือ \"ธีมนี้มีอยู่ในชีวิตฉันตรงไหนตอนนี้?\"",
+    "คำสำคัญบนแต่ละใบเป็นจุดเริ่มต้น ภาพในไพ่บอกได้มากกว่าคำใดๆ"
+  ],
+  "cards": [
+    {
+      "number": 0,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg",
+      "name": "The Fool",
+      "keywords": ["การเริ่มต้น", "ความบริสุทธิ์", "การก้าวออกด้วยความกล้า"],
+      "theme": "จุดเริ่มต้น"
+    },
+    {
+      "number": 1,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+      "name": "The Magician",
+      "keywords": ["เจตจำนง", "ทักษะ", "การสร้างสรรค์"],
+      "theme": "การลงมือทำ"
+    },
+    {
+      "number": 2,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg",
+      "name": "The High Priestess",
+      "keywords": ["สัญชาตญาณ", "ความลึกลับ", "ความรู้ภายใน"],
+      "theme": "ความสงบนิ่ง"
+    },
+    {
+      "number": 3,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg",
+      "name": "The Empress",
+      "keywords": ["ความอุดมสมบูรณ์", "การดูแลเอาใจใส่", "การสร้าง"],
+      "theme": "การบ่มเพาะ"
+    },
+    {
+      "number": 4,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg",
+      "name": "The Emperor",
+      "keywords": ["โครงสร้าง", "อำนาจ", "ความมั่นคง"],
+      "theme": "โครงสร้าง"
+    },
+    {
+      "number": 5,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg",
+      "name": "The Hierophant",
+      "keywords": ["ประเพณี", "การชี้แนะ", "ความเชื่อ"],
+      "theme": "ประเพณี"
+    },
+    {
+      "number": 6,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
+      "name": "The Lovers",
+      "keywords": ["การเลือก", "การรวมเป็นหนึ่ง", "คุณค่า"],
+      "theme": "การเลือก"
+    },
+    {
+      "number": 7,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+      "name": "The Chariot",
+      "keywords": ["แรงขับเคลื่อน", "การควบคุม", "ชัยชนะ"],
+      "theme": "แรงขับ"
+    },
+    {
+      "number": 8,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+      "name": "Strength",
+      "keywords": ["ความกล้า", "ความอดทน", "พลังภายใน"],
+      "theme": "ความเข้มแข็ง"
+    },
+    {
+      "number": 9,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg",
+      "name": "The Hermit",
+      "keywords": ["ความสันโดษ", "ปัญญา", "การค้นหาภายใน"],
+      "theme": "การไตร่ตรอง"
+    },
+    {
+      "number": 10,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg",
+      "name": "Wheel of Fortune",
+      "keywords": ["วัฏจักร", "การเปลี่ยนแปลง", "โชคชะตา"],
+      "theme": "วัฏจักร"
+    },
+    {
+      "number": 11,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg",
+      "name": "Justice",
+      "keywords": ["ความจริง", "ความสมดุล", "กรรมและผล"],
+      "theme": "ความสมดุล"
+    },
+    {
+      "number": 12,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg",
+      "name": "The Hanged Man",
+      "keywords": ["การยอมวาง", "การหยุดพัก", "มุมมองใหม่"],
+      "theme": "การยอมวาง"
+    },
+    {
+      "number": 13,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg",
+      "name": "Death",
+      "keywords": ["การสิ้นสุด", "การเปลี่ยนผ่าน", "การแปรเปลี่ยน"],
+      "theme": "การเปลี่ยนผ่าน"
+    },
+    {
+      "number": 14,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg",
+      "name": "Temperance",
+      "keywords": ["ความอดทน", "ความพอดี", "การไหลเวียน"],
+      "theme": "การไหลลื่น"
+    },
+    {
+      "number": 15,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg",
+      "name": "The Devil",
+      "keywords": ["การยึดติด", "เงามืด", "มายา"],
+      "theme": "เงามืด"
+    },
+    {
+      "number": 16,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+      "name": "The Tower",
+      "keywords": ["ความปั่นป่วน", "การเปิดเผย", "การเปลี่ยนแปลงฉับพลัน"],
+      "theme": "การปั่นป่วน"
+    },
+    {
+      "number": 17,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",
+      "name": "The Star",
+      "keywords": ["ความหวัง", "การฟื้นฟู", "แรงบันดาลใจ"],
+      "theme": "ความหวัง"
+    },
+    {
+      "number": 18,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",
+      "name": "The Moon",
+      "keywords": ["มายา", "ความกลัว", "จิตใต้สำนึก"],
+      "theme": "ความลึกลับ"
+    },
+    {
+      "number": 19,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
+      "name": "The Sun",
+      "keywords": ["ความสุข", "ความชัดเจน", "ชีวิตชีวา"],
+      "theme": "ความสุข"
+    },
+    {
+      "number": 20,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg",
+      "name": "Judgement",
+      "keywords": ["การตื่นรู้", "การชำระบัญชีชีวิต", "การเริ่มใหม่"],
+      "theme": "การตื่นรู้"
+    },
+    {
+      "number": 21,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",
+      "name": "The World",
+      "keywords": ["ความสมบูรณ์", "ความครบถ้วน", "การบูรณาการ"],
+      "theme": "ความสมบูรณ์"
+    }
+  ],
+  "ui": {
+    "selectedInstruction": "คลิกไพ่ใบอื่นเพื่อดู หรือคลิกซ้ำเพื่อปิด"
+  }
+}

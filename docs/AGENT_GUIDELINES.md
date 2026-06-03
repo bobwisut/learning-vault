@@ -125,6 +125,17 @@ For tarot lessons, prefer:
 Avoid presenting tarot as guaranteed prediction. Treat it as reflective
 interpretation and pattern reading.
 
+## Localized Lessons
+
+English is the default language. Keep shader and VFX lessons English-only by
+default; only localize tarot-type lessons or pages that are explicitly planned
+for localization.
+
+Localized lesson copy should live in `src/content/locales/<lesson-slug>/` as
+one JSON file per language. Translate values only; keep keys and array order
+stable so the rendering components can stay simple. See `docs/LOCALIZATION.md`
+for the authoring workflow.
+
 ## Interaction Ideas
 
 Useful visual interactions:

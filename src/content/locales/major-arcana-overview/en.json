@@ -1,0 +1,190 @@
+{
+  "intro": [
+    "The Major Arcana tells a single story — the soul's journey from a pure, innocent beginning to complete, unified wholeness. Each card is a step, not an isolated symbol.",
+    "Read them in order from 0 to 21 and a pattern appears. The Fool sets out; the early cards (I–VII) build identity and will; the middle cards (VIII–XIV) test and refine it; the late cards (XV–XXI) break it down and rebuild it into something more complete."
+  ],
+  "cardsHeading": "The 22 Cards",
+  "cardsInstruction": "Click any card to see its keywords and core theme.",
+  "journeyHeading": "The Journey in Three Chapters",
+  "chapters": [
+    {
+      "title": "Chapter 1 — Building the Self (0–VII)",
+      "body": "The Fool steps into the world and meets the tools of conscious life: will, intuition, nurture, structure, tradition, choice, and drive. These cards answer the question:",
+      "question": "Who am I, and what can I do?"
+    },
+    {
+      "title": "Chapter 2 — Testing the Self (VIII–XIV)",
+      "body": "The journey turns inward: strength, reflection, fate, balance, surrender, transition, and moderation. These cards answer the question:",
+      "question": "What do I truly believe, and what must I let go?"
+    },
+    {
+      "title": "Chapter 3 — Dissolving and Becoming (XV–XXI)",
+      "body": "Shadow, then sudden collapse, followed by hope, mystery, joy, awakening, and finally — wholeness. These cards answer the question:",
+      "question": "What have I been becoming all along?"
+    }
+  ],
+  "useHeading": "How to Use This Map",
+  "useBody": [
+    "A single card is a prompt, not a verdict. When a card appears in a reading, the useful question is not \"what does it predict?\" but \"where does this theme already live in my life right now?\"",
+    "The keywords on each card are a starting point. The image on the card says more than any words."
+  ],
+  "cards": [
+    {
+      "number": 0,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg",
+      "name": "The Fool",
+      "keywords": ["beginnings", "innocence", "leap of faith"],
+      "theme": "Beginning"
+    },
+    {
+      "number": 1,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+      "name": "The Magician",
+      "keywords": ["willpower", "skill", "manifestation"],
+      "theme": "Action"
+    },
+    {
+      "number": 2,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg",
+      "name": "The High Priestess",
+      "keywords": ["intuition", "mystery", "inner knowing"],
+      "theme": "Stillness"
+    },
+    {
+      "number": 3,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg",
+      "name": "The Empress",
+      "keywords": ["abundance", "nurture", "creation"],
+      "theme": "Nurture"
+    },
+    {
+      "number": 4,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg",
+      "name": "The Emperor",
+      "keywords": ["structure", "authority", "stability"],
+      "theme": "Structure"
+    },
+    {
+      "number": 5,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg",
+      "name": "The Hierophant",
+      "keywords": ["tradition", "guidance", "belief"],
+      "theme": "Tradition"
+    },
+    {
+      "number": 6,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_06_Lovers.jpg",
+      "name": "The Lovers",
+      "keywords": ["choice", "union", "values"],
+      "theme": "Choice"
+    },
+    {
+      "number": 7,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+      "name": "The Chariot",
+      "keywords": ["drive", "control", "victory"],
+      "theme": "Drive"
+    },
+    {
+      "number": 8,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+      "name": "Strength",
+      "keywords": ["courage", "patience", "inner force"],
+      "theme": "Strength"
+    },
+    {
+      "number": 9,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg",
+      "name": "The Hermit",
+      "keywords": ["solitude", "wisdom", "inner search"],
+      "theme": "Reflection"
+    },
+    {
+      "number": 10,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg",
+      "name": "Wheel of Fortune",
+      "keywords": ["cycles", "change", "fate"],
+      "theme": "Cycles"
+    },
+    {
+      "number": 11,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg",
+      "name": "Justice",
+      "keywords": ["truth", "balance", "cause and effect"],
+      "theme": "Balance"
+    },
+    {
+      "number": 12,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg",
+      "name": "The Hanged Man",
+      "keywords": ["surrender", "pause", "new perspective"],
+      "theme": "Surrender"
+    },
+    {
+      "number": 13,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg",
+      "name": "Death",
+      "keywords": ["endings", "transition", "transformation"],
+      "theme": "Transition"
+    },
+    {
+      "number": 14,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg",
+      "name": "Temperance",
+      "keywords": ["patience", "moderation", "flow"],
+      "theme": "Flow"
+    },
+    {
+      "number": 15,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg",
+      "name": "The Devil",
+      "keywords": ["attachment", "shadow", "illusion"],
+      "theme": "Shadow"
+    },
+    {
+      "number": 16,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+      "name": "The Tower",
+      "keywords": ["upheaval", "revelation", "sudden change"],
+      "theme": "Disruption"
+    },
+    {
+      "number": 17,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",
+      "name": "The Star",
+      "keywords": ["hope", "renewal", "inspiration"],
+      "theme": "Hope"
+    },
+    {
+      "number": 18,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",
+      "name": "The Moon",
+      "keywords": ["illusion", "fear", "the unconscious"],
+      "theme": "Mystery"
+    },
+    {
+      "number": 19,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
+      "name": "The Sun",
+      "keywords": ["joy", "clarity", "vitality"],
+      "theme": "Joy"
+    },
+    {
+      "number": 20,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg",
+      "name": "Judgement",
+      "keywords": ["awakening", "reckoning", "renewal"],
+      "theme": "Awakening"
+    },
+    {
+      "number": 21,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",
+      "name": "The World",
+      "keywords": ["completion", "wholeness", "integration"],
+      "theme": "Completion"
+    }
+  ],
+  "ui": {
+    "selectedInstruction": "Click another card to explore it, or click this card again to close."
+  }
+}

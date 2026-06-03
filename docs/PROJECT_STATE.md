@@ -31,7 +31,8 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - [x] Standardized section heading to "Three Useful Presets" and mental-model arrows to Unicode `→` across all lessons.
 - [x] Replaced "ASE Equivalent" with a "Shader Graph Equivalent" section on all 7 shader lessons (Bob's familiar field; node mappings are verifiable). Kept conceptual — node wiring only, no `.shadergraph` assets.
 - [x] Added lesson workflow docs, review checklist, backlog, and lesson request template.
-- [x] Made the Major Arcana lesson fully bilingual (EN/TH): a single page-level toggle (`MajorArcanaLesson`) switches the prose and the card map together; `MajorArcanaMap` is now a controlled `lang`-prop component. Default language is Thai.
+- [x] Made the Major Arcana lesson fully bilingual (EN/TH): a single page-level toggle (`MajorArcanaLesson`) switches the prose and the card map together. Default language is English.
+- [x] Extracted Major Arcana localized copy into editable JSON files under `src/content/locales/major-arcana-overview/` and documented the per-lesson localization workflow in `docs/LOCALIZATION.md`.
 
 ## Blocked / Waiting
 
@@ -43,7 +44,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - Lessons live as MDX in `src/content/lessons`.
 - Reusable visuals live in `src/components`.
 - Shader/VFX diagrams are conceptual unless Bob explicitly asks for real engine assets.
-- Localization: Thai is reserved for tarot-type lessons we plan to localize (e.g. Major Arcana). Shader lessons stay English-only; no Thai toggle on shaders. Bilingual lessons use a wrapper component that owns one `lang` state and passes it as a controlled prop to any interactive child, so the whole page switches together (see `MajorArcanaLesson` / `MajorArcanaMap`). Card proper names stay English in both languages by tarot convention.
+- Localization: English is the default language. Thai is reserved for tarot-type lessons we plan to localize (e.g. Major Arcana). Shader lessons stay English-only; no Thai toggle on shaders. Bilingual lessons use per-lesson JSON files in `src/content/locales/<lesson-slug>/`, with a wrapper component that owns one `lang` state and passes localized content to interactive children. Card proper names stay English in both languages by tarot convention.
 - Cross-lesson references must use the `LessonLink` component, never raw markdown links — raw links do not get the `/learning-vault` basePath in production and break on GitHub Pages.
 - Section naming standard: "Three Useful Presets". Mental-model arrows: Unicode `→`.
 - Engine-mapping sections use **Unity Shader Graph** ("Shader Graph Equivalent"), not Amplify Shader Editor. Bob's familiar field. Keep them conceptual: node names/wiring only, never `.shadergraph` asset files.
@@ -54,6 +55,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 ## Active Files / Areas
 
 - `src/content/lessons/`
+- `src/content/locales/`
 - `src/components/shader/`
 - `src/components/lesson/`
 - `src/app/lessons/[slug]/page.tsx`
