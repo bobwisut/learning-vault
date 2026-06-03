@@ -53,7 +53,8 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - Engine-mapping sections use **Unity Shader Graph** ("Shader Graph Equivalent"), not Amplify Shader Editor. Bob's familiar field. Keep them conceptual: node names/wiring only, never `.shadergraph` asset files.
 - Most new visual lessons should get independent review because they usually add a component and register it for MDX.
 - The four-panel visual pipeline is the preferred pattern for shader lessons when it fits the concept.
-- Concept Maps should be "signal chains," not label chains: each `FlowCanvas` card carries name + **Receives** / **Changes** / **Watch** (which demo panel/control shows the step). Keep each field a short phrase. The legacy `steps="A|B|C"` shorthand still works for simple maps.
+- Concept Maps should be "signal chains," not label chains: each `FlowCanvas` step carries name + **Receives** / **Changes** / **Watch** (which demo panel/control shows the step). Authored via the `steps` string using `::` field separators per step, `|` between steps: `"Name :: receives :: changes :: watch | ..."`. Plain `steps="A|B|C"` (no `::`) still renders the simple label chain. Keep each field a short phrase.
+- IMPORTANT toolchain constraint: `next-mdx-remote/rsc` (v6) only passes **literal string** props from MDX to components — JSX **expression** props like `cards={[...]}` are silently dropped at render. Any structured data an MDX component needs must come through a string prop (e.g. a `::`/`|` DSL or JSON string), never an object/array literal.
 - Active repo is `C:\Users\Wisut\.openclaw\workspace\learning-vault`; the older `D:\Projects\learning-vault` copy is stale.
 
 ## Active Files / Areas

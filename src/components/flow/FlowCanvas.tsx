@@ -9,7 +9,6 @@ interface FlowCanvasProps {
   nodes?: unknown
   edges?: unknown
   steps?: string
-  cards?: ConceptCard[]
   className?: string
 }
 
@@ -54,7 +53,26 @@ function CardFieldRow({ label, value, accent }: { label: string; value: string; 
   )
 }
 
-export default function FlowCanvas({ nodes, edges, steps, cards, className }: FlowCanvasProps) {
+// A "rich" step uses the `::` field separator: "Name :: receives :: changes :: watch".
+// Plain steps (no `::`) keep the simple label-chain layout. Steps are `|`-separated.
+function parseRichCards(steps?: string): ConceptCard[] | null {
+  if (!steps) return null
+  const rows = steps
+    .split('|')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s.split('::').map((p) => p.trim()))
+  if (!rows.some((parts) => parts.length > 1)) return null
+  return rows.map(([name, receives, changes, watch]) => ({
+    name,
+    receives: receives || undefined,
+    changes: changes || undefined,
+    watch: watch || undefined,
+  }))
+}
+
+export default function FlowCanvas({ nodes, edges, steps, className }: FlowCanvasProps) {
+  const cards = parseRichCards(steps)
   if (cards && cards.length > 0) {
     return (
       <div className={`not-prose my-8 rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5 ${className ?? ''}`}>

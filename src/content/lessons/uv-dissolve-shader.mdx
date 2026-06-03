@@ -36,15 +36,7 @@ It is several small decisions stacked together:
 
 ## Concept Map
 
-<FlowCanvas
-  cards={[
-    { name: 'UV', receives: 'the surface', changes: 'gives each pixel a coordinate', watch: 'feeds all four panels' },
-    { name: 'Noise', receives: 'UV coordinate', changes: 'coordinate → grayscale value', watch: 'raw-noise panel' },
-    { name: 'Threshold', receives: 'noise value + cutoff', changes: 'splits pixels into keep vs hide', watch: 'mask panel, as you drag cutoff' },
-    { name: 'Alpha Cutoff + Edge Glow', receives: 'the threshold mask', changes: 'hides one side, lights the border band', watch: 'edge band, as you change width' },
-    { name: 'Final Color', receives: 'all steps combined', changes: 'composites into the visible result', watch: 'final panel' },
-  ]}
-/>
+<FlowCanvas steps="UV :: the surface :: gives each pixel a coordinate :: feeds all four panels | Noise :: UV coordinate :: coordinate → grayscale value :: raw-noise panel | Threshold :: noise value + cutoff :: splits pixels into keep vs hide :: mask panel, as you drag cutoff | Alpha Cutoff + Edge Glow :: the threshold mask :: hides one side, lights the border band :: edge band, as you change width | Final Color :: all steps combined :: composites into the visible result :: final panel" />
 
 ## What Each Step Does
 
