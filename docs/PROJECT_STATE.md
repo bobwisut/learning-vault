@@ -33,6 +33,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - [x] Added lesson workflow docs, review checklist, backlog, and lesson request template.
 - [x] Made the Major Arcana lesson fully bilingual (EN/TH): a single page-level toggle (`MajorArcanaLesson`) switches the prose and the card map together. Default language is English.
 - [x] Extracted Major Arcana localized copy into editable JSON files under `src/content/locales/major-arcana-overview/` and documented the per-lesson localization workflow in `docs/LOCALIZATION.md`.
+- [x] Cleaned up the homepage so it reads as a lesson library instead of an internal build-status page.
 
 ## Blocked / Waiting
 
@@ -67,7 +68,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 
 ## Next Recommended Action
 
-Pick the next lesson from `docs/BACKLOG.md` using `docs/templates/LESSON_REQUEST.md` and validate with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
+Pick the next lesson from `docs/BACKLOG.md` using `docs/templates/LESSON_REQUEST.md`. Validate changes with `npm run lint`, `npx tsc --noEmit`, and `npm run build`.
 
 ## Notes for Future Agents
 

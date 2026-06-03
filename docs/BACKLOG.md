@@ -4,6 +4,24 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ## Ready Next
 
+### Shader/VFX: Particle Burst Timing
+
+- Status: ready to shape
+- Goal: explain how timing controls make a burst feel snappy, soft, or delayed.
+- Main visual: layered timeline for spawn, size over lifetime, color over lifetime, and emission.
+- Interaction: adjust duration, start delay, and fade timing.
+- Notes: keep conceptual; do not create Unity particle system assets unless requested.
+
+### Tarot: Three-Card Spread Trainer
+
+- Status: ready to shape
+- Goal: practice past-present-future or situation-action-outcome readings.
+- Main visual: three card slots with meaning prompts.
+- Interaction: reveal cards or prompts step by step.
+- Open questions: should this store practice logs, or stay stateless for now?
+
+## Done
+
 ### Shader/VFX: UV Panning And Flow Maps
 
 - Status: done
@@ -34,23 +52,13 @@ This backlog keeps future lesson work small enough for agents to execute.
 - Notes: keep short; this should support future onboarding.
 - Lesson: `how-to-read-a-visual-lesson`
 
-## Needs Shaping
-
 ### Tarot: Major Arcana Overview Map
 
-- Status: needs shaping
+- Status: done
 - Goal: introduce the Major Arcana as a journey rather than isolated cards.
 - Main visual: ordered path of 22 cards.
 - Interaction: select a card to show keywords and reflection prompts.
-- Open questions: use symbolic placeholders first, or real card art later?
-
-### Tarot: Three-Card Spread Trainer
-
-- Status: needs shaping
-- Goal: practice past-present-future or situation-action-outcome readings.
-- Main visual: three card slots with meaning prompts.
-- Interaction: reveal cards or prompts step by step.
-- Open questions: should this store practice logs, or stay stateless for now?
+- Lesson: `major-arcana-overview`
 
 ### Shader/VFX: Masked Color Ramp
 
@@ -78,8 +86,7 @@ This backlog keeps future lesson work small enough for agents to execute.
 
 ## Parking Lot
 
-- Particle burst timing.
-- Normal map basics.
+- Normal map basics follow-up.
 - Shader keyword glossary.
 - Tarot suit maps.
 - Lesson search and tags.

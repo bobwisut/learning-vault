@@ -1,23 +1,29 @@
+import Link from 'next/link'
 import { getAllLessons } from '@/lib/lessons'
 import LessonSearch from '@/components/lesson/LessonSearch'
 
 const focusAreas = [
-  'Shader and VFX concepts',
-  'Interactive visual explanations',
+  'Shader and VFX fundamentals',
+  'Unity Shader Graph equivalents',
   'Tarot learning maps',
 ]
 
-const checkpointItems = [
-  'Next.js app is published online',
-  'MDX lesson loading is working',
-  'Reusable animation, graph, and 3D components exist',
-  'Agent lesson workflow is documented',
-]
-
-const lessonPipeline = [
-  { label: 'Plan', detail: 'Choose one concept and define the visual proof.' },
-  { label: 'Build', detail: 'Create MDX plus focused interactive components.' },
-  { label: 'Review', detail: 'Check clarity, build health, and beginner usefulness.' },
+const startHere = [
+  {
+    title: 'New Here?',
+    detail: 'Learn how the visual lessons are structured before jumping into a topic.',
+    slug: 'how-to-read-a-visual-lesson',
+  },
+  {
+    title: 'Shader Path',
+    detail: 'Start with UV dissolve, then follow the shader and VFX building blocks.',
+    slug: 'uv-dissolve-shader',
+  },
+  {
+    title: 'Tarot Map',
+    detail: 'Explore the Major Arcana as one connected journey in English or Thai.',
+    slug: 'major-arcana-overview',
+  },
 ]
 
 export default function Home() {
@@ -35,8 +41,8 @@ export default function Home() {
               Learning Vault
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-zinc-300">
-              A focused place for lessons that explain difficult topics through diagrams,
-              interaction, animation, and small examples.
+              A visual lesson library for topics that are easier to understand through
+              diagrams, interaction, animation, and small examples.
             </p>
           </div>
 
@@ -53,32 +59,24 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="rounded-lg border border-zinc-800 bg-zinc-900/70 p-5">
+        <section>
+          <div className="mb-5">
             <p className="text-sm font-medium uppercase tracking-[0.16em] text-teal-300">
-              Checkpoint 1
+              Start here
             </p>
-            <h2 className="mt-3 text-2xl font-semibold text-white">App foundation</h2>
-            <p className="mt-3 text-sm leading-6 text-zinc-400">
-              The foundation should make it easy for an agent to add one useful visual
-              lesson without changing the app shape every time.
-            </p>
-            <ul className="mt-5 space-y-3">
-              {checkpointItems.map((item) => (
-                <li key={item} className="flex gap-3 text-sm text-zinc-200">
-                  <span className="mt-1 h-2 w-2 rounded-full bg-teal-300" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <h2 className="mt-2 text-2xl font-semibold text-white">Pick a path</h2>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {lessonPipeline.map((step) => (
-              <div key={step.label} className="rounded-lg border border-zinc-800 bg-zinc-900 p-5">
-                <h3 className="text-base font-semibold text-white">{step.label}</h3>
-                <p className="mt-3 text-sm leading-6 text-zinc-400">{step.detail}</p>
-              </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {startHere.map((item) => (
+              <Link
+                key={item.slug}
+                href={`/lessons/${item.slug}`}
+                className="block rounded-lg border border-zinc-800 bg-zinc-900 p-5 transition-colors hover:border-teal-500/70 hover:bg-zinc-900/80"
+              >
+                <h3 className="text-base font-semibold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">{item.detail}</p>
+              </Link>
             ))}
           </div>
         </section>

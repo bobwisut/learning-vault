@@ -65,46 +65,35 @@ Avoid over-engineering early.
 
 The app currently has:
 
-- A Next.js app scaffold
+- A deployed Next.js static-export app on GitHub Pages
 - Filesystem-based MDX lesson loading
-- A demo lesson at `src/content/lessons/hello-world.mdx`
-- Reusable starter components for animation, React Flow, and R3F
+- Search/filter support for published lessons
+- A reader-facing homepage with start paths for onboarding, shader lessons, and tarot
+- Ten published lessons across onboarding, shader/VFX fundamentals, a shader glossary, and Major Arcana tarot
+- Reusable visual components for lesson layout, links, React Flow diagrams, canvas demos, and React Three Fiber demos
+- Per-lesson localization support for the bilingual Major Arcana lesson
 
-The repo does not yet have the first real shader lesson. The existing
-`hello-world` lesson is a component demo, not the COD-56 UV/dissolve lesson.
+The original starter `hello-world` demo is unpublished so it does not appear in
+the lesson library.
 
-## First Milestone
+## Completed Milestone
 
-Build a strong foundation for agent-created visual lessons.
+The first milestone is complete: agents can add useful visual lessons with MDX,
+interactive React components, diagrams, animation, and reusable lesson patterns.
 
-The first milestone should prove that an agent can create a useful visual lesson
-with:
+The first shader/VFX batch is also complete. It covers UV dissolve, Fresnel rim
+light, UV panning and flow maps, masked color ramps, noise basics, two-layer UV
+panning, normal map basics, and a shader keyword glossary.
 
-- MDX content
-- Interactive React components
-- Node-flow diagrams
-- Simple animations
-- Reusable visual components
+## Next Milestone
 
-## First Shader Lesson Target
+Refine the library and add the next high-value lesson in a small, reviewable
+increment.
 
-The first real shader lesson should teach UV flow and a dissolve shader node
-chain.
+Recommended target shape:
 
-Minimum target:
-
-- One published MDX lesson
-- One node-flow diagram
-- One animated or interactive visual
-- Three preset examples
-- Short beginner-friendly explanations
-- A clear note that web diagrams are conceptual and are not generated Unity,
-  Shader Graph, or ASE assets
-
-Suggested dissolve chain:
-
-```text
-UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
-```
-
-A simple but working module is better than an ambitious half-broken one.
+- Choose one lesson from `docs/BACKLOG.md`
+- Write a short request using `docs/templates/LESSON_REQUEST.md`
+- Keep diagrams conceptual unless Bob explicitly asks for engine-specific assets
+- Use "Shader Graph Equivalent" for shader engine mapping sections
+- Validate with lint, TypeScript, and build before publishing

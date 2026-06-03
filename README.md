@@ -73,7 +73,7 @@ published: true
 ---
 ```
 
-The first real shader lesson target is a visual explanation of UV flow and a
-dissolve shader node chain.
-
-See `docs/AGENT_GUIDELINES.md` before adding or changing lesson content.
+See `docs/AGENT_GUIDELINES.md`, `docs/LESSON_WORKFLOW.md`, and
+`docs/REVIEW_CHECKLIST.md` before adding or changing lesson content. Current
+status and next steps live in `docs/PROJECT_STATE.md`; candidate lessons live in
+`docs/BACKLOG.md`.
