@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-type Locale = 'en' | 'th'
+export type Locale = 'en' | 'th'
 
 type CardData = {
   number: number
@@ -133,34 +133,13 @@ const toRoman = (n: number) =>
   ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
    'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'][n]
 
-export default function MajorArcanaMap({ locale = 'en' }: { locale?: Locale }) {
+export default function MajorArcanaMap({ lang }: { lang: Locale }) {
   const [selected, setSelected] = useState<CardData | null>(null)
-  const [activeLang, setActiveLang] = useState<Locale>(locale)
 
-  const t = (card: CardData) => card[activeLang]
+  const t = (card: CardData) => card[lang]
 
   return (
     <div className="not-prose flex flex-col gap-6">
-      <div className="flex justify-end">
-        <div className="flex rounded-full border border-zinc-700 p-0.5">
-          {(['en', 'th'] as Locale[]).map((lang) => (
-            <button
-              key={lang}
-              type="button"
-              onClick={() => setActiveLang(lang)}
-              className={[
-                'rounded-full px-3 py-1 text-xs font-medium transition-colors',
-                activeLang === lang
-                  ? 'bg-violet-500 text-white'
-                  : 'text-zinc-400 hover:text-zinc-200',
-              ].join(' ')}
-            >
-              {lang.toUpperCase()}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8">
         {cards.map((card) => (
           <button
@@ -223,7 +202,7 @@ export default function MajorArcanaMap({ locale = 'en' }: { locale?: Locale }) {
               ))}
             </div>
             <p className="text-xs text-zinc-500">
-              {activeLang === 'th'
+              {lang === 'th'
                 ? 'คลิกไพ่ใบอื่นเพื่อดู หรือคลิกซ้ำเพื่อปิด'
                 : 'Click another card to explore it, or click this card again to close.'}
             </p>

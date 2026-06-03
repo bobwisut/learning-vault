@@ -16,7 +16,7 @@ import NoiseBasicsDemo from '@/components/shader/NoiseBasicsDemo'
 import TwoLayerUVPanningDemo from '@/components/shader/TwoLayerUVPanningDemo'
 import NormalMapDemo from '@/components/shader/NormalMapDemo'
 import GlossaryViewer from '@/components/shader/GlossaryViewer'
-import MajorArcanaMap from '@/components/tarot/MajorArcanaMap'
+import MajorArcanaLesson from '@/components/tarot/MajorArcanaLesson'
 
 const components = {
   FadeIn,
@@ -33,7 +33,7 @@ const components = {
   TwoLayerUVPanningDemo,
   NormalMapDemo,
   GlossaryViewer,
-  MajorArcanaMap,
+  MajorArcanaLesson,
 }
 
 export async function generateStaticParams() {
