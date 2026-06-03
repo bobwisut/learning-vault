@@ -19,7 +19,7 @@ Fresnel rim light makes the edge of a surface glow when it turns away from the c
 The useful mental model is:
 
 ```text
-View Direction + Normal -> Fresnel -> Emission
+View Direction + Normal → Fresnel → Emission
 ```
 
 The common shader shape is:
@@ -52,11 +52,16 @@ faces the camera and high near the silhouette edge.
 
 **Emission** adds the rim color back into the final effect.
 
-## Three Useful Looks
+## Three Useful Presets
 
 - **Soft shield:** broad rim for protective bubbles, shields, and selection outlines.
 - **Sharp aura:** tight stylized glow around a character or object.
 - **Warm dissolve edge:** a rim-like glow that can connect to burn and dissolve effects.
+
+## How This Connects
+
+- The <LessonLink slug="uv-dissolve-shader">dissolve lesson</LessonLink> lights a thin emissive edge band too — both highlight a border, one driven by view angle and one by a noise threshold.
+- The rim value is just another grayscale mask, so it can feed a <LessonLink slug="masked-color-ramp">masked color ramp</LessonLink> to build multi-color rims instead of a single tint.
 
 ## Common Mistakes
 

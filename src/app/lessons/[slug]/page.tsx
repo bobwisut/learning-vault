@@ -7,6 +7,7 @@ import FlowCanvas from '@/components/flow/FlowCanvas'
 import R3FCanvas from '@/components/canvas/R3FCanvas'
 import VisualLessonMap from '@/components/lesson/VisualLessonMap'
 import { ReadingPathDiagram } from '@/components/lesson/VisualLessonMap'
+import LessonLink from '@/components/lesson/LessonLink'
 import DissolveShaderDemo from '@/components/shader/DissolveShaderDemo'
 import FlowMapDemo from '@/components/shader/FlowMapDemo'
 import FresnelRimDemo from '@/components/shader/FresnelRimDemo'
@@ -23,6 +24,7 @@ const components = {
   R3FCanvas,
   VisualLessonMap,
   ReadingPathDiagram,
+  LessonLink,
   DissolveShaderDemo,
   FlowMapDemo,
   FresnelRimDemo,

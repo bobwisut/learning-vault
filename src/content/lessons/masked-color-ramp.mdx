@@ -16,13 +16,13 @@ A color ramp turns a boring grayscale mask into a stylized, readable surface by 
   The stop sliders drive every panel at the same time.
 </FadeIn>
 
-This connects directly to the dissolve lesson: there the grayscale mask decided what
+This connects directly to the <LessonLink slug="uv-dissolve-shader">dissolve lesson</LessonLink>: there the grayscale mask decided what
 *disappears*. Here the same kind of mask decides what *color* shows up.
 
 The useful mental model is:
 
 ```text
-Grayscale Mask -> Ramp Stops -> Color Lookup -> Final Color
+Grayscale Mask → Ramp Stops → Color Lookup → Final Color
 ```
 
 ## Visual Hook
@@ -58,6 +58,12 @@ value picks a spot on the ramp, and the ramp returns the final color:
 - **Lava:** dark rock at the bottom, glowing orange edge, hot bright core.
 - **Toxic:** deep green base ramping into an acid-green highlight.
 - **Ice:** cold shadow tones lifting into bright frozen highlights.
+
+## How This Connects
+
+- The <LessonLink slug="noise-basics">noise lesson</LessonLink> is the most common source of the grayscale mask this ramp reads.
+- The <LessonLink slug="uv-dissolve-shader">dissolve lesson</LessonLink> uses the same kind of mask to hide pixels instead of coloring them.
+- A <LessonLink slug="two-layer-uv-panning">two-layer panning</LessonLink> pattern can drive the ramp for animated, shifting color.
 
 ## Common Mistakes
 

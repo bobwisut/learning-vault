@@ -19,7 +19,7 @@ A dissolve shader uses a grayscale pattern to decide which parts of a surface st
 The useful mental model is:
 
 ```text
-UV -> Noise -> Threshold -> Alpha Cutoff -> Edge Glow -> Final Color
+UV → Noise → Threshold → Alpha Cutoff → Edge Glow → Final Color
 ```
 
 ## Visual Hook
@@ -55,6 +55,12 @@ It is several small decisions stacked together:
 - **Soft edge:** a wider glow band for magical or energy-style dissolves.
 - **Crisp cut:** a small edge band for hard digital breakup.
 - **Almost gone:** a high cutoff where only bright noise islands remain.
+
+## How This Connects
+
+- The <LessonLink slug="noise-basics">noise lesson</LessonLink> generates the grayscale pattern this shader thresholds — dissolve is what you *do* with a noise value.
+- Feed the same mask into the <LessonLink slug="masked-color-ramp">masked color ramp</LessonLink> to color the surviving pixels instead of hiding them.
+- The <LessonLink slug="two-layer-uv-panning">two-layer panning lesson</LessonLink> can animate the mask so the dissolve edge crawls instead of staying still.
 
 ## Common Mistakes
 

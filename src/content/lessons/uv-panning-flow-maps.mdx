@@ -21,7 +21,7 @@ one perfectly straight direction.
 The useful mental model is:
 
 ```text
-UV -> Offset Time -> Optional Flow Bend -> Texture Sample -> Final Color
+UV → Offset Time → Optional Flow Bend → Texture Sample → Final Color
 ```
 
 ## Visual Hook
@@ -46,11 +46,17 @@ the idea conceptually.
 
 **Final color** shows the sampled result on the surface.
 
-## Three Useful Looks
+## Three Useful Presets
 
 - **Water drift:** slow sideways motion for water, mist, or heat haze.
 - **Energy stream:** fast vertical movement for shield or magic effects.
 - **Smoke crawl:** slow diagonal movement for smoke, dust, or clouds.
+
+## How This Connects
+
+- The <LessonLink slug="two-layer-uv-panning">two-layer panning lesson</LessonLink> stacks two of these panners at different speeds for richer, less repetitive motion.
+- The texture being scrolled is often a <LessonLink slug="noise-basics">noise pattern</LessonLink> — panning noise is how you get drifting smoke, water, and energy.
+- Pan a <LessonLink slug="uv-dissolve-shader">dissolve mask</LessonLink> and the dissolve edge moves across the surface instead of staying fixed.
 
 ## Common Mistakes
 
