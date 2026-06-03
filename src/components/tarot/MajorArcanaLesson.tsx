@@ -81,7 +81,7 @@ const content: Record<Locale, Content> = {
 }
 
 export default function MajorArcanaLesson() {
-  const [lang, setLang] = useState<Locale>('th')
+  const [lang, setLang] = useState<Locale>('en')
   const c = content[lang]
 
   return (
