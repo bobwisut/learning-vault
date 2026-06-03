@@ -1,7 +1,15 @@
+interface ConceptCard {
+  name: string
+  receives?: string
+  changes?: string
+  watch?: string
+}
+
 interface FlowCanvasProps {
   nodes?: unknown
   edges?: unknown
   steps?: string
+  cards?: ConceptCard[]
   className?: string
 }
 
@@ -31,7 +39,49 @@ function isConceptEdge(value: unknown): value is ConceptEdge {
   return Boolean(value && typeof value === 'object' && 'source' in value && 'target' in value)
 }
 
-export default function FlowCanvas({ nodes, edges, steps, className }: FlowCanvasProps) {
+function CardFieldRow({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
+  return (
+    <div>
+      <dt
+        className={`text-[10px] font-medium uppercase tracking-wide ${
+          accent ? 'text-sky-500/80' : 'text-zinc-500'
+        }`}
+      >
+        {label}
+      </dt>
+      <dd className={`text-xs ${accent ? 'text-sky-200' : 'text-zinc-300'}`}>{value}</dd>
+    </div>
+  )
+}
+
+export default function FlowCanvas({ nodes, edges, steps, cards, className }: FlowCanvasProps) {
+  if (cards && cards.length > 0) {
+    return (
+      <div className={`not-prose my-8 rounded-lg border border-zinc-800 bg-zinc-950 p-4 sm:p-5 ${className ?? ''}`}>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map((card, index) => (
+            <div
+              key={`${card.name}-${index}`}
+              className="flex flex-col gap-2 rounded-md border border-zinc-700 bg-zinc-900 p-3"
+            >
+              <div className="flex items-center gap-2">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-zinc-600 text-xs font-semibold text-zinc-400">
+                  {index + 1}
+                </span>
+                <p className="text-sm font-semibold text-white">{card.name}</p>
+              </div>
+              <dl className="flex flex-col gap-1.5">
+                {card.receives ? <CardFieldRow label="Receives" value={card.receives} /> : null}
+                {card.changes ? <CardFieldRow label="Changes" value={card.changes} /> : null}
+                {card.watch ? <CardFieldRow label="Watch" value={card.watch} accent /> : null}
+              </dl>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+
   const stepNodes = steps
     ?.split('|')
     .map((step) => step.trim())

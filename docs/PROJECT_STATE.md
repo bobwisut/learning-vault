@@ -18,6 +18,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 
 ## Active Checkpoints
 
+- [ ] Concept Map upgrade: piloted on UV Dissolve; roll the `FlowCanvas` `cards` format (Receives / Changes / Watch) out to the other 8 shader lessons once Bob signs off on the live pilot.
 - [ ] Pick the next lesson from `docs/BACKLOG.md`.
 - [ ] Keep each lesson aligned with the visual lesson workflow and review checklist.
 - [ ] Verify GitHub Pages after publishing new lessons.
@@ -38,6 +39,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 ## Blocked / Waiting
 
 - Needs confirmation if any future lesson should use real engine-specific assets instead of conceptual web diagrams.
+- Reconcile Linear cards COD-53 / COD-55 against repo reality (needs Bob's input on what they cover and whether they are still open).
 
 ## Important Decisions
 
@@ -51,6 +53,7 @@ The app foundation, deployment, lesson workflow, onboarding lesson, and the full
 - Engine-mapping sections use **Unity Shader Graph** ("Shader Graph Equivalent"), not Amplify Shader Editor. Bob's familiar field. Keep them conceptual: node names/wiring only, never `.shadergraph` asset files.
 - Most new visual lessons should get independent review because they usually add a component and register it for MDX.
 - The four-panel visual pipeline is the preferred pattern for shader lessons when it fits the concept.
+- Concept Maps should be "signal chains," not label chains: each `FlowCanvas` card carries name + **Receives** / **Changes** / **Watch** (which demo panel/control shows the step). Keep each field a short phrase. The legacy `steps="A|B|C"` shorthand still works for simple maps.
 - Active repo is `C:\Users\Wisut\.openclaw\workspace\learning-vault`; the older `D:\Projects\learning-vault` copy is stale.
 
 ## Active Files / Areas
